@@ -1,0 +1,14 @@
+,unit,min,max,mean,lo,hi,n_out_of_range,ok
+QV2M,g/kg,3.07,24.18,15.08,0,30,0,True
+RH2M,%,17.84,96.87,74.84,0,100,0,True
+IMERG_PRECTOT,mm/day,0.0,229.39,10.15,0,500,0,True
+T2M,C,10.9,33.64,24.59,-5,45,0,True
+T2M_MAX,C,17.13,41.5,29.31,-5,50,0,True
+T2M_MIN,C,4.22,28.76,20.27,-10,40,0,True
+T2MDEW,C,-3.03,27.99,19.27,-15,35,0,True
+PS,kPa,97.88,100.92,99.63,95,105,0,True
+WS2M,m/s,0.57,6.75,1.51,0,30,0,True
+WD2M,Degrees,-8998.0,360.0,-1970.8,0,360,4749,False
+WS10M,m/s,0.94,9.96,2.47,0,40,0,True
+ALLSKY_SFC_SW_DWN,MJ/m^2/day,1.5,28.89,16.75,0,35,0,True
+PRECTOTCORR,mm/day,0.0,288.1,8.52,0,500,0,True
