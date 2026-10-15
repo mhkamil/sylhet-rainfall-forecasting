@@ -5,3 +5,5 @@ pyarrow==26.0.0
 nbformat
 nbconvert
 ipykernel
+scipy==1.18.1
+statsmodels==0.15.0
