@@ -17,8 +17,9 @@ SEEDS = [0, 1, 2, 3, 4]
 
 
 def linear_pre():
-    return ColumnTransformer([("month", OneHotEncoder(drop="first", sparse_output=False), ["month"])],
-                             remainder=StandardScaler())
+    # callable selector: also works for ablations without the season family (no `month` column)
+    return ColumnTransformer([("month", OneHotEncoder(drop="first", sparse_output=False),
+                               lambda X: [c for c in ["month"] if c in X.columns])], remainder=StandardScaler())
 
 
 def _lin(model):

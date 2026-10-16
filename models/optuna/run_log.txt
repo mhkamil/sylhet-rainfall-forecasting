@@ -34,3 +34,6 @@
 ('reg', 'random_forest'): done
 ('cls', 'random_forest'): done
 merged part files: 20
+--- Part 2 follow-ups Fri Oct 16 18:42:55 UTC 2026
+(('reg', 'ridge'), 34.96664500236511)
+(('reg', 'hurdle_catboost_log_msess'), 1884.7717928886414)

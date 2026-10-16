@@ -1,0 +1,33 @@
+{
+  "model": "tide",
+  "task": "reg",
+  "route": "log",
+  "lookback": 14,
+  "selection": "2012-2014 slice (inner model)",
+  "objective": "MAE",
+  "best_value_slice": 6.357899060780599,
+  "best_trial": 1,
+  "best_params": {
+    "hidden_size": 32,
+    "n_layers": 1,
+    "dropout": 0.062397808134481064,
+    "lr": 0.00013066739238053285,
+    "batch_size": 64
+  },
+  "default_value_slice": 6.455059889758559,
+  "best_user_attrs": {
+    "MAE": 6.357899060780599,
+    "MAE_wet": 11.077398996193018,
+    "RMSE": 11.522051368508857,
+    "best_epoch": 59.0,
+    "bias": 0.025430819964299967,
+    "n_params": 12083.0,
+    "seconds": 96.72063207626343,
+    "smear_factor": 1.5269673734935738
+  },
+  "trial_states": {
+    "COMPLETE": 12,
+    "PRUNED": 8
+  },
+  "trial_minutes": 9.588245566666668
+}

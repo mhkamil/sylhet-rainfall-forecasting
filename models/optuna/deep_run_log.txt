@@ -1,0 +1,8 @@
+--- deep tuning Fri Oct 16 19:02:36 UTC 2026
+('tft', 'reg'): 64.4 min
+('tide', 'cls'): 73.4 min
+('tsmixer', 'cls'): 11.5 min
+('tide', 'reg'): 26.2 min
+('tsmixer', 'reg'): 9.1 min
+('tft', 'cls'): 99.7 min
+done

@@ -4,22 +4,22 @@
   "feature_set": "B",
   "objective": "MAE",
   "direction": "minimize",
-  "best_value": 7.36133202398103,
-  "best_trial": 31,
+  "best_value": 7.35729678824308,
+  "best_trial": 9,
   "best_params": {
-    "alpha": 99.37829497361099
+    "alpha": 235.8594058414266
   },
   "logged_metrics": {
-    "MAE": 7.36133202398103,
-    "MSESS": 0.22199172143602208,
-    "RMSE": 14.158113912258074,
-    "bias": -1.6102037663654656,
-    "MAE_wet": 12.000181744348097,
-    "MSESS_vs_seas_pers": -0.01273863480095463
+    "MAE": 7.35729678824308,
+    "MSESS": 0.21768473994672588,
+    "RMSE": 14.204848558003931,
+    "bias": -1.7103129535957886,
+    "MAE_wet": 12.002348330438034,
+    "MSESS_vs_seas_pers": -0.018815316597822894
   },
   "trial_states": {
-    "PRUNED": 28,
-    "COMPLETE": 22
+    "PRUNED": 29,
+    "COMPLETE": 21
   },
-  "tuning_seconds": 44.1972975730896
+  "tuning_seconds": 24.743184328079224
 }

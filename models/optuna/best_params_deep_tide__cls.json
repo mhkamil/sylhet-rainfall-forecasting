@@ -1,0 +1,35 @@
+{
+  "model": "tide",
+  "task": "cls",
+  "route": "bin",
+  "lookback": 14,
+  "selection": "2012-2014 slice (inner model)",
+  "objective": "BSS",
+  "best_value_slice": 0.1119677155740787,
+  "best_trial": 6,
+  "best_params": {
+    "hidden_size": 128,
+    "n_layers": 3,
+    "dropout": 0.3081033187150455,
+    "lr": 0.008302885339729815,
+    "batch_size": 128
+  },
+  "default_value_slice": 0.09173356260186283,
+  "best_user_attrs": {
+    "BSS": 0.1119677155740787,
+    "Brier": 0.09029581727867397,
+    "ECE": 0.023603461294958047,
+    "PR_AUC": 0.9036476789059495,
+    "ROC_AUC": 0.9312204629802685,
+    "best_epoch": 23.0,
+    "log_loss": 0.3147404371034623,
+    "n_params": 270519.0,
+    "seconds": 333.4712417125702,
+    "smear_factor": NaN
+  },
+  "trial_states": {
+    "COMPLETE": 12,
+    "PRUNED": 8
+  },
+  "trial_minutes": 39.51440086666666
+}

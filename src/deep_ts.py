@@ -70,13 +70,14 @@ def to_series(df):
     return TimeSeries.from_dataframe(df.astype("float32"), freq="D")
 
 
-def prepare(transform, last_train, df=None, fut=None):
-    """Scaled darts series. Scalers (StandardScaler) are fitted on rows <= last_train only."""
+def prepare(transform, last_train, df=None, fut=None, past=None, wet_mm=WET_MM):
+    """Scaled darts series. Scalers (StandardScaler) are fitted on rows <= last_train only.
+    `df` may be an ablation variant (other past covariates, rain source or start year); its rain column is TARGET."""
     if df is None:
         df, fut = load_daily()
-    past_df = df[PAST]
-    if transform == "bin":       # binary target (rain >= 1 mm, not scaled); today's rain amount becomes a past covariate
-        y = (df[[TARGET]] >= WET_MM).astype("float32").rename(columns={TARGET: "wet"})
+    past_df = df[past or PAST]
+    if transform == "bin":       # binary target (rain >= wet_mm, not scaled); today's rain amount becomes a past covariate
+        y = (df[[TARGET]] >= wet_mm).astype("float32").rename(columns={TARGET: "wet"})
         past_df = past_df.assign(rain_log1p=np.log1p(df[TARGET]))
     else:
         y = np.log1p(df[[TARGET]]) if transform == "log" else df[[TARGET]]
@@ -122,22 +123,30 @@ def likelihood_for(kind, transform):
     return QuantileRegression(QUANTILES) if kind == "tft" else None
 
 
-def make_model(kind, L, seed, n_epochs, callbacks, name, checkpoints=False, likelihood=None):
+# Stage-5 architectures; Stage 6.3 tunes hidden_size, n_layers, dropout, lr and batch_size (other settings fixed)
+DEFAULTS = {"tsmixer": {"hidden_size": 32, "n_layers": 2}, "tide": {"hidden_size": 64, "n_layers": 1},
+            "tft": {"hidden_size": 16, "n_layers": 1}}
+COMMON_DEFAULTS = {"dropout": 0.1, "lr": 1e-3, "batch_size": BATCH}
+
+
+def make_model(kind, L, seed, n_epochs, callbacks, name, checkpoints=False, likelihood=None, params=None):
     CKPT_DIR.mkdir(parents=True, exist_ok=True)
-    common = dict(input_chunk_length=L, output_chunk_length=1, batch_size=BATCH, n_epochs=n_epochs, dropout=0.1,
-                  likelihood=likelihood,
-                  optimizer_kwargs={"lr": 1e-3, "weight_decay": 1e-4}, random_state=seed, model_name=name,
+    p = {**COMMON_DEFAULTS, **DEFAULTS[kind], **(params or {})}
+    h, n = p["hidden_size"], p["n_layers"]
+    common = dict(input_chunk_length=L, output_chunk_length=1, batch_size=p["batch_size"], n_epochs=n_epochs,
+                  dropout=p["dropout"], likelihood=likelihood,
+                  optimizer_kwargs={"lr": p["lr"], "weight_decay": 1e-4}, random_state=seed, model_name=name,
                   work_dir=str(CKPT_DIR), save_checkpoints=checkpoints, force_reset=True,
                   pl_trainer_kwargs={"accelerator": "cpu", "enable_progress_bar": False, "enable_model_summary": False,
                                      "logger": False, "callbacks": callbacks})
     if kind == "tsmixer":
-        return TSMixerModel(hidden_size=32, ff_size=32, num_blocks=2, **common)
+        return TSMixerModel(hidden_size=h, ff_size=h, num_blocks=n, **common)
     if kind == "tide":
-        return TiDEModel(num_encoder_layers=1, num_decoder_layers=1, decoder_output_dim=8, hidden_size=64,
+        return TiDEModel(num_encoder_layers=n, num_decoder_layers=n, decoder_output_dim=8, hidden_size=h,
                          temporal_width_past=4, temporal_width_future=0,   # 0: use the 4 calendar features raw
                          temporal_decoder_hidden=32, use_layer_norm=True, **common)
     if kind == "tft":
-        return TFTModel(hidden_size=16, lstm_layers=1, num_attention_heads=2, hidden_continuous_size=8,
+        return TFTModel(hidden_size=h, lstm_layers=n, num_attention_heads=2, hidden_continuous_size=max(4, h // 2),
                         full_attention=False, **common)
     raise ValueError(kind)
 
@@ -182,16 +191,27 @@ def postprocess(raw, y, transform, smear):
     return out.set_index(out.index - DAY).rename_axis("date")
 
 
-def run(kind, transform, L, seed, save=True, return_model=False):
+def n_params(model):
+    return int(sum(t.numel() for t in model.model.parameters()))
+
+
+def run(kind, transform, L, seed, save=True, return_model=False, params=None, variant=None, tag=None, out_dir=None,
+        inner_only=False, extra_callbacks=()):
     """Inner fit (early stopping; smearing for log) -> refit -> validation forecasts.
-    Returns (predictions, info) or, with return_model=True, (predictions, info, refitted model, data)."""
-    name, t0 = f"{kind}_{transform}_L{L}_s{seed}", time.time()
+    Returns (predictions, info) or, with return_model=True, (predictions, info, refitted model, data).
+    params: architecture/optimiser overrides (Stage 6.3); variant: {"df", "fut", "past", "wet_mm"} for ablations;
+    inner_only: stop after the inner fit and return (slice forecasts, info) -- used for tuning on the slice."""
+    tag = tag or f"{kind}_{transform}_L{L}"
+    name, t0 = f"{tag}_s{seed}", time.time()
     lik = lambda: likelihood_for(kind, transform)
+    v = variant or {}
+    data = lambda last: prepare(transform, last, v.get("df"), v.get("fut"), v.get("past"), v.get("wet_mm", WET_MM))
     # 1. inner fit with early stopping on the slice, best weights restored
-    d = prepare(transform, INNER_LAST)
+    d = data(INNER_LAST)
     h1 = History()
-    m1 = make_model(kind, L, seed, MAX_EPOCHS, [h1, EarlyStopping("val_loss", patience=PATIENCE, min_delta=1e-4)],
-                    name + "_inner", checkpoints=True, likelihood=lik())
+    m1 = make_model(kind, L, seed, MAX_EPOCHS, [h1, EarlyStopping("val_loss", patience=PATIENCE, min_delta=1e-4),
+                                                *extra_callbacks],
+                    name + "_inner", checkpoints=True, likelihood=lik(), params=params)
     m1.fit(upto(d["target"], INNER_LAST), past_covariates=d["past"], future_covariates=d["future"],
            val_series=d["target"].slice(SLICE_FIRST - pd.Timedelta(days=L), TRAIN_LAST), val_past_covariates=d["past"],
            val_future_covariates=d["future"], load_best=True, verbose=False)
@@ -201,20 +221,26 @@ def run(kind, transform, L, seed, save=True, return_model=False):
     if transform == "log":
         smear = float(np.mean(np.exp(np.log1p(d["raw"].loc[slice_raw.index]) - slice_raw)))
     slice_out = postprocess(slice_raw, d["raw"], transform, smear)
+    if inner_only:
+        shutil.rmtree(CKPT_DIR / (name + "_inner"), ignore_errors=True)
+        return slice_out, {"best_epoch": best_epoch, "smear_factor": smear, "n_params": n_params(m1),
+                           "fit_seconds": time.time() - t0, "inner_val": h1.val}
     # 2. refit on all training targets for best_epoch epochs (validation loss only logged for the curve)
-    d = prepare(transform, TRAIN_LAST)
+    d = data(TRAIN_LAST)
     h2 = History()
-    m2 = make_model(kind, L, seed, best_epoch, [h2], name, likelihood=lik())
+    m2 = make_model(kind, L, seed, best_epoch, [h2], name, likelihood=lik(), params=params)
     m2.fit(upto(d["target"], TRAIN_LAST), past_covariates=d["past"], future_covariates=d["future"],
            val_series=d["target"].slice(VAL_FIRST - pd.Timedelta(days=L), DEV_END), val_past_covariates=d["past"],
            val_future_covariates=d["future"], verbose=False)
     # 3. one-step forecasts for every validation target date
     out = postprocess(one_step(m2, d, VAL_FIRST, DEV_END), d["raw"], transform, smear)
-    info = {"best_epoch": best_epoch, "smear_factor": smear, "fit_seconds": time.time() - t0, "inner_train": h1.train,
+    info = {"best_epoch": best_epoch, "smear_factor": smear, "fit_seconds": time.time() - t0, "n_params": n_params(m2),
+            "inner_train": h1.train,
             "inner_val": h1.val, "refit_train": h2.train, "refit_val": h2.val}
     if save:
-        DEEP_DIR.mkdir(parents=True, exist_ok=True)
-        stem = DEEP_DIR / f"{kind}_{transform}_L{L}__seed{seed}"
+        folder = Path(out_dir or DEEP_DIR)
+        folder.mkdir(parents=True, exist_ok=True)
+        stem = folder / f"{tag}__seed{seed}"
         out.to_parquet(f"{stem}.parquet")
         slice_out.to_parquet(f"{stem}__slice.parquet")
         Path(f"{stem}_history.json").write_text(json.dumps(info))

@@ -1,0 +1,35 @@
+{
+  "model": "tsmixer",
+  "task": "cls",
+  "route": "bin",
+  "lookback": 14,
+  "selection": "2012-2014 slice (inner model)",
+  "objective": "BSS",
+  "best_value_slice": 0.262003727386489,
+  "best_trial": 12,
+  "best_params": {
+    "hidden_size": 16,
+    "n_layers": 3,
+    "dropout": 0.2496198248957039,
+    "lr": 0.008931213400515043,
+    "batch_size": 64
+  },
+  "default_value_slice": 0.23830978222384935,
+  "best_user_attrs": {
+    "BSS": 0.262003727386489,
+    "Brier": 0.0750400382429012,
+    "ECE": 0.01879033667618009,
+    "PR_AUC": 0.9517170709266317,
+    "ROC_AUC": 0.9564053613862709,
+    "best_epoch": 5.0,
+    "log_loss": 0.2603773199191807,
+    "n_params": 3958.0,
+    "seconds": 19.599316596984863,
+    "smear_factor": NaN
+  },
+  "trial_states": {
+    "COMPLETE": 15,
+    "PRUNED": 5
+  },
+  "trial_minutes": 7.839850433333334
+}

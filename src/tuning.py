@@ -38,6 +38,12 @@ THREADS = 1                   # one thread per model; parallelism comes from run
 RF_THREADS = 4                # random forests run alone after the pool (sklearn RF results do not depend on n_jobs)
 MAX_TREES = 3000              # booster cap; early stopping on the slice decides the actual number
 OBJECTIVE = {"cls": ("BSS", "maximize"), "reg": ("MAE", "minimize")}
+# Part-2 follow-up (researcher, 2026-10-16): the hurdle's role is the mean-preserving forecast -> a second study maximises MSESS
+OBJECTIVE_OVERRIDE = {("reg", "hurdle_catboost_log_msess"): ("MSESS", "maximize")}
+
+
+def objective_of(task, name):
+    return OBJECTIVE_OVERRIDE.get((task, name), OBJECTIVE[task])
 LOGGED = {"cls": ["BSS", "PR_AUC", "ROC_AUC", "Brier", "CSI", "log_loss", "ECE", "BSS_vs_seas_pers"],
           "reg": ["MAE", "MSESS", "RMSE", "bias", "MAE_wet", "MSESS_vs_seas_pers"]}
 # P(wet) for the hurdle: trials use the Stage-4 default CatBoost classifier (fixed, so the amount-model study does not wait
@@ -60,6 +66,10 @@ def sp_C_l1(t):
 
 def sp_alpha(t):
     return {"alpha": t.suggest_float("alpha", 1e-4, 1e2, log=True)}
+
+
+def sp_alpha_wide(t):          # Ridge only: the 1e-4..1e2 optimum sat at the upper edge (Part 1) -> range widened to 1e5
+    return {"alpha": t.suggest_float("alpha", 1e-4, 1e5, log=True)}
 
 
 def sp_alpha_l1(t):
@@ -206,7 +216,7 @@ MODELS = {
         "mlp": (sp_mlp, b_mlp, True, "fit_fold"),
     },
     "reg": {
-        "ridge": (sp_alpha, b_linreg(Ridge), False, "fit_fold"),
+        "ridge": (sp_alpha_wide, b_linreg(Ridge), False, "fit_fold"),
         "lasso": (sp_alpha, b_linreg(Lasso), False, "fit_fold"),
         "elasticnet": (sp_alpha_l1, b_linreg(ElasticNet), False, "fit_fold"),
         "sgd_reg": (sp_sgd, b_sgd, True, "fit_fold"),
@@ -217,6 +227,7 @@ MODELS = {
         "mlp_huber": (sp_mlp, b_mlp, True, "fit_fold"),
         "catboost_tweedie": (sp_cat_tweedie, b_cat, True, "fit_fold"),
         "hurdle_catboost_log": (sp_cat, b_cat, True, "hurdle"),
+        "hurdle_catboost_log_msess": (sp_cat, b_cat, True, "hurdle"),
     },
 }
 
@@ -226,7 +237,8 @@ BUDGET = {("cls", "logreg_l2"): 30, ("cls", "logreg_l1"): 20, ("cls", "logreg_en
           ("cls", "mlp"): 30,
           ("reg", "ridge"): 50, ("reg", "lasso"): 50, ("reg", "elasticnet"): 60, ("reg", "sgd_reg"): 100,
           ("reg", "random_forest"): 15, ("reg", "xgboost"): 50, ("reg", "lightgbm"): 50, ("reg", "catboost"): 40,
-          ("reg", "mlp_huber"): 30, ("reg", "catboost_tweedie"): 40, ("reg", "hurdle_catboost_log"): 30}
+          ("reg", "mlp_huber"): 30, ("reg", "catboost_tweedie"): 40, ("reg", "hurdle_catboost_log"): 30,
+          ("reg", "hurdle_catboost_log_msess"): 30}
 
 
 # ---------- data and one evaluation ----------
@@ -256,7 +268,7 @@ def fold_predict(name, params, data, k, seed=TUNE_SEED):
 def evaluate(name, params, data, trial=None, seed=TUNE_SEED):
     """Score `params` fold by fold; with a trial, report the running mean of the objective so the pruner can act."""
     task = data["task"]
-    metric = OBJECTIVE[task][0]
+    metric = objective_of(task, name)[0]
     rows = []
     for k, (tr, va) in enumerate(data["folds"]):
         t0 = time.time()
@@ -268,7 +280,7 @@ def evaluate(name, params, data, trial=None, seed=TUNE_SEED):
                      "seconds": time.time() - t0})
         if trial is not None:
             trial.report(float(np.mean([r[metric] for r in rows])), k)
-            if trial.should_prune():
+            if k < len(data["folds"]) - 1 and trial.should_prune():     # pruning after the last fold saves nothing
                 trial.set_user_attr("folds_done", k + 1)
                 raise optuna.TrialPruned()
     return pd.DataFrame(rows)
@@ -284,7 +296,7 @@ def make_objective(name, data):
             trial.set_user_attr(col, float(folds[col].mean()))
         trial.set_user_attr("folds", folds.round(5).to_dict("list"))
         trial.set_user_attr("params_resolved", params)
-        return float(folds[OBJECTIVE[data["task"]][0]].mean())
+        return float(folds[objective_of(data["task"], name)[0]].mean())
     return objective
 
 
@@ -303,7 +315,7 @@ def tune(name, task, n_trials, fset=FSET, storage=None, data=None):
     optuna.logging.set_verbosity(optuna.logging.WARNING)
     study = optuna.create_study(study_name=study_name(name, task, fset), storage=storage or storage_url(name, task, fset),
                                 load_if_exists=True,
-                                direction=OBJECTIVE[task][1], sampler=optuna.samplers.TPESampler(seed=SAMPLER_SEED),
+                                direction=objective_of(task, name)[1], sampler=optuna.samplers.TPESampler(seed=SAMPLER_SEED),
                                 pruner=optuna.pruners.MedianPruner(n_startup_trials=5, n_warmup_steps=1))
     for t in study.get_trials(deepcopy=False, states=[optuna.trial.TrialState.RUNNING]):
         study.tell(t.number, state=optuna.trial.TrialState.FAIL)       # left over from an interrupted run
@@ -322,8 +334,8 @@ def tune(name, task, n_trials, fset=FSET, storage=None, data=None):
 def save_best(name, task, study, fset=FSET):
     states = pd.Series([t.state.name for t in study.trials]).value_counts().to_dict()
     b = study.best_trial
-    out = {"model": name, "task": task, "feature_set": fset, "objective": OBJECTIVE[task][0],
-           "direction": OBJECTIVE[task][1], "best_value": b.value, "best_trial": b.number,
+    out = {"model": name, "task": task, "feature_set": fset, "objective": objective_of(task, name)[0],
+           "direction": objective_of(task, name)[1], "best_value": b.value, "best_trial": b.number,
            "best_params": b.user_attrs["params_resolved"], "logged_metrics": {k: b.user_attrs[k] for k in LOGGED[task]},
            "trial_states": states, "tuning_seconds": sum(v for k, v in study.user_attrs.items() if k.startswith("seconds"))}
     path = OPTUNA_DIR / f"best_params_{name}__{task}.json"
@@ -356,7 +368,8 @@ def rerun_best(name, task, params=None, fset=FSET, skip_existing=True):
             continue
         if kind == "hurdle":
             out.append(R.run_hurdle("catboost", build(params, task), fset, seed, classifier=HURDLE_P_FINAL,
-                                    kinds=("log",), suffix="_tuned", results_path=part))
+                                    kinds=("log",), suffix=tuned[len("hurdle_catboost_log"):],
+                                    results_path=part))
         else:
             out.append(E.run_cv(tuned, build(params, task), task, fset, seed, results_path=part)[0])
     return pd.concat(out) if out else None

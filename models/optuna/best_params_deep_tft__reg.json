@@ -1,0 +1,33 @@
+{
+  "model": "tft",
+  "task": "reg",
+  "route": "mm",
+  "lookback": 14,
+  "selection": "2012-2014 slice (inner model)",
+  "objective": "MAE",
+  "best_value_slice": 5.758349254491667,
+  "best_trial": 6,
+  "best_params": {
+    "hidden_size": 16,
+    "n_layers": 2,
+    "dropout": 0.09593255072022924,
+    "lr": 0.007982501588723245,
+    "batch_size": 256
+  },
+  "default_value_slice": 5.801511994511025,
+  "best_user_attrs": {
+    "MAE": 5.758349254491667,
+    "MAE_wet": 10.318701821852532,
+    "RMSE": 11.043584554914442,
+    "best_epoch": 11.0,
+    "bias": -0.8504373244030835,
+    "n_params": 30557.0,
+    "seconds": 134.78386735916138,
+    "smear_factor": NaN
+  },
+  "trial_states": {
+    "COMPLETE": 7,
+    "PRUNED": 5
+  },
+  "trial_minutes": 46.7837154
+}

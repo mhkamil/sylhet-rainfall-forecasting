@@ -1,0 +1,26 @@
+{
+  "model": "hurdle_catboost_log_msess",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MSESS",
+  "direction": "maximize",
+  "best_value": 0.2849849944671784,
+  "best_trial": 23,
+  "best_params": {
+    "depth": 4,
+    "learning_rate": 0.08233848808296962,
+    "l2_leaf_reg": 1.5106959624037395
+  },
+  "logged_metrics": {
+    "MAE": 7.089821611599501,
+    "MSESS": 0.2849849944671784,
+    "RMSE": 13.36067361159158,
+    "bias": -0.4782394705257006,
+    "MAE_wet": 11.811373611616517,
+    "MSESS_vs_seas_pers": 0.07893067912519665
+  },
+  "trial_states": {
+    "COMPLETE": 30
+  },
+  "tuning_seconds": 1789.065408706665
+}

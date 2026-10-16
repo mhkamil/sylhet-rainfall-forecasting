@@ -1,0 +1,33 @@
+{
+  "model": "tsmixer",
+  "task": "reg",
+  "route": "log",
+  "lookback": 14,
+  "selection": "2012-2014 slice (inner model)",
+  "objective": "MAE",
+  "best_value_slice": 5.87039432712015,
+  "best_trial": 19,
+  "best_params": {
+    "hidden_size": 16,
+    "n_layers": 1,
+    "dropout": 0.03735965443918152,
+    "lr": 0.002089217588879427,
+    "batch_size": 64
+  },
+  "default_value_slice": 6.01757614084357,
+  "best_user_attrs": {
+    "MAE": 5.87039432712015,
+    "MAE_wet": 10.243761322026822,
+    "RMSE": 11.05153809558135,
+    "best_epoch": 9.0,
+    "bias": -0.9219614855361312,
+    "n_params": 2706.0,
+    "seconds": 19.277284622192383,
+    "smear_factor": 1.4286219489543486
+  },
+  "trial_states": {
+    "COMPLETE": 13,
+    "PRUNED": 7
+  },
+  "trial_minutes": 5.6094825166666675
+}
