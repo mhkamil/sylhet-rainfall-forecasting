@@ -1,0 +1,28 @@
+{
+  "model": "logreg_l1",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.2534233428826613,
+  "best_trial": 13,
+  "best_params": {
+    "C": 0.01280758213343576
+  },
+  "logged_metrics": {
+    "BSS": 0.2534233428826613,
+    "PR_AUC": 0.9553930059214772,
+    "ROC_AUC": 0.9554529949762818,
+    "Brier": 0.07889229125161712,
+    "CSI": 0.8254361749791608,
+    "log_loss": 0.2726647924226099,
+    "ECE": 0.03898784577959301,
+    "BSS_vs_seas_pers": 0.08573415950578973
+  },
+  "trial_states": {
+    "COMPLETE": 12,
+    "PRUNED": 8,
+    "FAIL": 1
+  },
+  "tuning_seconds": 1072.011967420578
+}

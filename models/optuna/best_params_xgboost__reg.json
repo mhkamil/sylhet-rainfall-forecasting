@@ -1,0 +1,30 @@
+{
+  "model": "xgboost",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 6.971637136553943,
+  "best_trial": 25,
+  "best_params": {
+    "learning_rate": 0.014913328137479451,
+    "max_depth": 3,
+    "min_child_weight": 18.621318868400667,
+    "subsample": 0.8250832145167201,
+    "colsample_bytree": 0.5736937762980193,
+    "reg_lambda": 0.041950536029775054
+  },
+  "logged_metrics": {
+    "MAE": 6.971637136553943,
+    "MSESS": 0.2606556036638865,
+    "RMSE": 13.672941945587658,
+    "bias": -1.6313651266410656,
+    "MAE_wet": 11.704762975399266,
+    "MSESS_vs_seas_pers": 0.04303508461597814
+  },
+  "trial_states": {
+    "PRUNED": 33,
+    "COMPLETE": 17
+  },
+  "tuning_seconds": 1021.9535806179047
+}

@@ -16,3 +16,4 @@ nbclient
 torch==2.14.1
 darts==0.48.0
 pytorch-lightning==2.6.6
+optuna==5.0.0

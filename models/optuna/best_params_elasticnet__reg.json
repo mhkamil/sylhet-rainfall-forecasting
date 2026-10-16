@@ -1,0 +1,26 @@
+{
+  "model": "elasticnet",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 7.299276603159345,
+  "best_trial": 59,
+  "best_params": {
+    "alpha": 0.2221754976628289,
+    "l1_ratio": 0.8919220690980514
+  },
+  "logged_metrics": {
+    "MAE": 7.299276603159345,
+    "MSESS": 0.19027440873134888,
+    "RMSE": 14.50939196115134,
+    "bias": -2.412248010480833,
+    "MAE_wet": 12.117668127026345,
+    "MSESS_vs_seas_pers": -0.05783567117390746
+  },
+  "trial_states": {
+    "COMPLETE": 30,
+    "PRUNED": 30
+  },
+  "tuning_seconds": 84.49245071411133
+}

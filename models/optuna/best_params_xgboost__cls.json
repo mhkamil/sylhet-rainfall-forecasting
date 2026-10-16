@@ -1,0 +1,32 @@
+{
+  "model": "xgboost",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.2659303991180003,
+  "best_trial": 29,
+  "best_params": {
+    "learning_rate": 0.022782711319393967,
+    "max_depth": 4,
+    "min_child_weight": 5.048829297932385,
+    "subsample": 0.7148815179160817,
+    "colsample_bytree": 0.5865172408375702,
+    "reg_lambda": 0.038801227461565765
+  },
+  "logged_metrics": {
+    "BSS": 0.2659303991180003,
+    "PR_AUC": 0.9541596862752018,
+    "ROC_AUC": 0.9561669511324071,
+    "Brier": 0.07764765405348993,
+    "CSI": 0.8248700411194893,
+    "log_loss": 0.26407194422543534,
+    "ECE": 0.025802320851261183,
+    "BSS_vs_seas_pers": 0.10116195828216372
+  },
+  "trial_states": {
+    "PRUNED": 28,
+    "COMPLETE": 22
+  },
+  "tuning_seconds": 926.9802711009979
+}

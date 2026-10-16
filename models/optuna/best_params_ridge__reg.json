@@ -1,0 +1,25 @@
+{
+  "model": "ridge",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 7.36133202398103,
+  "best_trial": 31,
+  "best_params": {
+    "alpha": 99.37829497361099
+  },
+  "logged_metrics": {
+    "MAE": 7.36133202398103,
+    "MSESS": 0.22199172143602208,
+    "RMSE": 14.158113912258074,
+    "bias": -1.6102037663654656,
+    "MAE_wet": 12.000181744348097,
+    "MSESS_vs_seas_pers": -0.01273863480095463
+  },
+  "trial_states": {
+    "PRUNED": 28,
+    "COMPLETE": 22
+  },
+  "tuning_seconds": 44.1972975730896
+}

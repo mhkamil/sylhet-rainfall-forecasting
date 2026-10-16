@@ -1,0 +1,25 @@
+{
+  "model": "lasso",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 7.275125461850495,
+  "best_trial": 31,
+  "best_params": {
+    "alpha": 0.19875430660221582
+  },
+  "logged_metrics": {
+    "MAE": 7.275125461850495,
+    "MSESS": 0.19602577694680604,
+    "RMSE": 14.448719037977833,
+    "bias": -2.362778425083679,
+    "MAE_wet": 12.095739589909115,
+    "MSESS_vs_seas_pers": -0.04972883426802881
+  },
+  "trial_states": {
+    "PRUNED": 30,
+    "COMPLETE": 20
+  },
+  "tuning_seconds": 50.36124587059021
+}

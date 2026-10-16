@@ -1,0 +1,32 @@
+{
+  "model": "mlp",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.2515152872378109,
+  "best_trial": 11,
+  "best_params": {
+    "n_layers": 2,
+    "units": 93,
+    "dropout": 0.20790203025079892,
+    "weight_decay": 1.41297372934811e-06,
+    "lr": 0.00016587388811465018,
+    "batch_size": 512
+  },
+  "logged_metrics": {
+    "BSS": 0.2515152872378109,
+    "PR_AUC": 0.9519081280539392,
+    "ROC_AUC": 0.9542181479110099,
+    "Brier": 0.07913328238905085,
+    "CSI": 0.8182637207996661,
+    "log_loss": 0.2693838331405287,
+    "ECE": 0.027163038575093897,
+    "BSS_vs_seas_pers": 0.08348751820167259
+  },
+  "trial_states": {
+    "COMPLETE": 19,
+    "PRUNED": 11
+  },
+  "tuning_seconds": 2449.2310750484467
+}

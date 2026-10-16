@@ -1,0 +1,31 @@
+{
+  "model": "lightgbm",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 6.961272472300115,
+  "best_trial": 25,
+  "best_params": {
+    "learning_rate": 0.01162522506850399,
+    "num_leaves": 21,
+    "min_child_samples": 27,
+    "colsample_bytree": 0.7298526033555471,
+    "subsample": 0.6214860604265202,
+    "reg_alpha": 0.016100269554580205,
+    "reg_lambda": 8.663608646959325
+  },
+  "logged_metrics": {
+    "MAE": 6.961272472300115,
+    "MSESS": 0.2581541526712557,
+    "RMSE": 13.73993684989511,
+    "bias": -1.7949116837877164,
+    "MAE_wet": 11.738249087063426,
+    "MSESS_vs_seas_pers": 0.03837063176018678
+  },
+  "trial_states": {
+    "COMPLETE": 27,
+    "PRUNED": 23
+  },
+  "tuning_seconds": 1156.019698381424
+}

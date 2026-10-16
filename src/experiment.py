@@ -129,6 +129,29 @@ def append_results(new, path=RESULTS):
 
 
 # ---------- runners ----------
+def fit_fold(factory, task, seed, X, y, tr, va):
+    """One fold of the protocol: inner fit on the slice (threshold, early stopping), refit on `tr`, predict `va`.
+    Labels of `va` are never read. Returns (predictions, threshold, n_trees, info). Shared by run_cv and src/tuning.py."""
+    est = factory(seed, y[tr])
+    boost, thr, n_trees, info = booster_family(est) is not None, np.nan, np.nan, {}
+    if boost or task == "cls":
+        itr, sl = inner_split(tr)
+        inner = factory(seed, y[itr])
+        if boost:
+            n_trees = fit_early_stopping(inner, X.loc[itr], y[itr], X.loc[sl], y[sl])
+        else:
+            inner.fit(X.loc[itr], y[itr])
+        if task == "cls":
+            thr = M.choose_threshold(y[sl], predict(inner, X.loc[sl], task), "CSI")
+        info = {"inner_train_last_target": S.target_dates(itr).max().date(),
+                "slice_targets": f"{S.target_dates(sl).min().date()}..{S.target_dates(sl).max().date()}"}
+    if boost:
+        set_trees(est, n_trees)
+    est.fit(X.loc[tr], y[tr])
+    return predict(est, X.loc[va], task), thr, n_trees, info
+
+
+
 def run_cv(name, factory, task, fset, seed=0, save=True, results_path=None, oof_dir=None, split="cv"):
     """factory(seed, y_train) -> unfitted estimator. Returns (tidy scores, out-of-fold predictions, fold log).
     split="cv": the 5 expanding folds; split="dl": the single DL split (train 1981-2014, validate 2015-2019)."""
@@ -139,23 +162,9 @@ def run_cv(name, factory, task, fset, seed=0, save=True, results_path=None, oof_
     rows, oof, log = [], [], []
     for k, (tr, va) in enumerate(folds_fn(X.index), 1):
         t0 = time.time()
-        est = factory(seed, y[tr])
-        boost, thr, n_trees = booster_family(est) is not None, np.nan, np.nan
-        if boost or task == "cls":
-            itr, sl = inner_split(tr)
-            inner = factory(seed, y[itr])
-            if boost:
-                n_trees = fit_early_stopping(inner, X.loc[itr], y[itr], X.loc[sl], y[sl])
-            else:
-                inner.fit(X.loc[itr], y[itr])
-            if task == "cls":
-                thr = M.choose_threshold(y[sl], predict(inner, X.loc[sl], task), "CSI")
-            log.append({"fold": k, "inner_train_last_target": S.target_dates(itr).max().date(),
-                        "slice_targets": f"{S.target_dates(sl).min().date()}..{S.target_dates(sl).max().date()}"})
-        if boost:
-            set_trees(est, n_trees)
-        est.fit(X.loc[tr], y[tr])
-        p = predict(est, X.loc[va], task)
+        p, thr, n_trees, info = fit_fold(factory, task, seed, X, y, tr, va)
+        if info:
+            log.append({"fold": k, **info})
         m = score(task, y[va], p, thr, references(task, X, Y, rain, tr, va), va)
         rows.append({"fold": k, **m, "n_trees": n_trees, "fit_seconds": time.time() - t0})
         oof.append(pd.DataFrame({"fold": k, "y_true": y[va].to_numpy(), "pred": p, "threshold": thr}, index=va))

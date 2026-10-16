@@ -1,0 +1,28 @@
+{
+  "model": "catboost_tweedie",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 6.887142659246789,
+  "best_trial": 4,
+  "best_params": {
+    "depth": 5,
+    "learning_rate": 0.06695552617031866,
+    "l2_leaf_reg": 2.7036160666620015,
+    "variance_power": 1.3329833121584336
+  },
+  "logged_metrics": {
+    "MAE": 6.887142659246789,
+    "MSESS": 0.2461533558275745,
+    "RMSE": 13.839324175753614,
+    "bias": -2.138325880363337,
+    "MAE_wet": 11.730768599370187,
+    "MSESS_vs_seas_pers": 0.023355316428250127
+  },
+  "trial_states": {
+    "PRUNED": 26,
+    "COMPLETE": 14
+  },
+  "tuning_seconds": 1746.5290040969849
+}

@@ -1,0 +1,29 @@
+{
+  "model": "catboost",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.2675502274722154,
+  "best_trial": 25,
+  "best_params": {
+    "depth": 8,
+    "learning_rate": 0.02168593540766408,
+    "l2_leaf_reg": 6.021283717683454
+  },
+  "logged_metrics": {
+    "BSS": 0.2675502274722154,
+    "PR_AUC": 0.9521294613466029,
+    "ROC_AUC": 0.955620107312701,
+    "Brier": 0.07747391830314303,
+    "CSI": 0.8243554301122311,
+    "log_loss": 0.26496284521097513,
+    "ECE": 0.029367344246992656,
+    "BSS_vs_seas_pers": 0.10336345411477799
+  },
+  "trial_states": {
+    "PRUNED": 24,
+    "COMPLETE": 16
+  },
+  "tuning_seconds": 6791.782747507095
+}

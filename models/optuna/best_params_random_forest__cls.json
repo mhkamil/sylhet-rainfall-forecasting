@@ -1,0 +1,31 @@
+{
+  "model": "random_forest",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.2457920624644862,
+  "best_trial": 11,
+  "best_params": {
+    "n_estimators": 750,
+    "max_depth": 17,
+    "min_samples_leaf": 19,
+    "max_features": "sqrt"
+  },
+  "logged_metrics": {
+    "BSS": 0.2457920624644862,
+    "PR_AUC": 0.9495552191814853,
+    "ROC_AUC": 0.9545311286977457,
+    "Brier": 0.07971365584732569,
+    "CSI": 0.8186685025147126,
+    "log_loss": 0.2738539640686882,
+    "ECE": 0.03706380453062834,
+    "BSS_vs_seas_pers": 0.07588819198853718
+  },
+  "trial_states": {
+    "COMPLETE": 10,
+    "PRUNED": 5,
+    "FAIL": 1
+  },
+  "tuning_seconds": 1151.5702636241913
+}

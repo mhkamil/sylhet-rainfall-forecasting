@@ -1,0 +1,31 @@
+{
+  "model": "sgd_logloss",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.25270675600007664,
+  "best_trial": 85,
+  "best_params": {
+    "alpha": 0.00036746522835311705,
+    "penalty": "elasticnet",
+    "learning_rate": "adaptive",
+    "l1_ratio": 0.884447523455056,
+    "eta0": 0.000639418945065941
+  },
+  "logged_metrics": {
+    "BSS": 0.25270675600007664,
+    "PR_AUC": 0.9530709517331297,
+    "ROC_AUC": 0.9544124177591076,
+    "Brier": 0.07895608137719666,
+    "CSI": 0.8199031265238961,
+    "log_loss": 0.27090014550767616,
+    "ECE": 0.031370162250913894,
+    "BSS_vs_seas_pers": 0.0846950357036784
+  },
+  "trial_states": {
+    "PRUNED": 52,
+    "COMPLETE": 48
+  },
+  "tuning_seconds": 199.8538646697998
+}

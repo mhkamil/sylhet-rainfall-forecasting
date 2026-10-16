@@ -1,0 +1,28 @@
+{
+  "model": "logreg_enet",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.25365548354841216,
+  "best_trial": 14,
+  "best_params": {
+    "C": 0.013465057312070733,
+    "l1_ratio": 0.1533474144570829
+  },
+  "logged_metrics": {
+    "BSS": 0.25365548354841216,
+    "PR_AUC": 0.9540852595917169,
+    "ROC_AUC": 0.9547751598525773,
+    "Brier": 0.0788650558620845,
+    "CSI": 0.8205727346727814,
+    "log_loss": 0.27107950022525346,
+    "ECE": 0.03253235657247694,
+    "BSS_vs_seas_pers": 0.08587978607198561
+  },
+  "trial_states": {
+    "COMPLETE": 14,
+    "PRUNED": 11
+  },
+  "tuning_seconds": 1532.4071702957153
+}

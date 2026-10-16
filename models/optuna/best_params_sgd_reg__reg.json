@@ -1,0 +1,28 @@
+{
+  "model": "sgd_reg",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 7.288981191782099,
+  "best_trial": 18,
+  "best_params": {
+    "alpha": 0.057665272331652466,
+    "penalty": "l1",
+    "learning_rate": "constant",
+    "eta0": 0.0002684922050120437
+  },
+  "logged_metrics": {
+    "MAE": 7.288981191782099,
+    "MSESS": 0.21606786255528015,
+    "RMSE": 14.20947929694228,
+    "bias": -1.9323725932783453,
+    "MAE_wet": 11.966189979495308,
+    "MSESS_vs_seas_pers": -0.020554386880046117
+  },
+  "trial_states": {
+    "PRUNED": 64,
+    "COMPLETE": 36
+  },
+  "tuning_seconds": 295.3182621002197
+}

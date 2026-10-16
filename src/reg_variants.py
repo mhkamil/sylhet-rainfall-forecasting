@@ -33,11 +33,11 @@ def _smearing(inner, X, z, sl):
     return float(np.mean(np.exp(z[sl] - inner.predict(X.loc[sl]))))
 
 
-def _store(name, fset, seed, rows, oof, save, split):
+def _store(name, fset, seed, rows, oof, save, split, results_path=None):
     res = E.tidy(rows, name, "reg", fset, seed)
     if save:
         _, results, oof_dir = E.SPLITS[split]
-        E.append_results(res, results)
+        E.append_results(res, results_path or results)
         Path(oof_dir).mkdir(parents=True, exist_ok=True)
         pd.concat(oof).to_parquet(Path(oof_dir) / f"{name}__reg__{fset}__seed{seed}.parquet")
     return res
@@ -60,24 +60,37 @@ def run_log(name, factory, fset, seed=0, save=True, split="cv"):
     return pd.concat([_store(f"{name}+{kind}", fset, seed, r, o, save, split) for kind, (r, o) in out.items()])
 
 
-def run_hurdle(name, factory, fset, seed=0, save=True, split="cv"):
-    """Two result sets: 'hurdle_<name>_direct' and 'hurdle_<name>_log' (log with smearing)."""
+def hurdle_amount(factory, seed, X, y, wet, va, kind="log"):
+    """E[mm | wet] for the rows `va` from a regressor fitted on the wet training rows `wet` (direct mm or log + smearing)."""
+    if kind == "direct":
+        est, _, _ = _fit(factory, seed, X, y, wet)
+        return np.clip(est.predict(X.loc[va]), WET_MM, None)
+    z = np.log1p(y)
+    est, inner, sl = _fit(factory, seed, X, z, wet)
+    return np.clip(np.exp(est.predict(X.loc[va])) * _smearing(inner, X, z, sl) - 1, WET_MM, None)
+
+
+def hurdle_probs(fset, seed, split="cv", classifier=HURDLE_CLASSIFIER):
+    """Saved out-of-fold P(rain >= 1 mm) of `classifier` (same seed and feature set)."""
+    return pd.read_parquet(Path(E.SPLITS[split][2]) / f"{classifier}__cls__{fset}__seed{seed}.parquet")["pred"]
+
+
+def run_hurdle(name, factory, fset, seed=0, save=True, split="cv", classifier=HURDLE_CLASSIFIER, kinds=("direct", "log"),
+               suffix="", results_path=None):
+    """Result sets 'hurdle_<name>_<kind><suffix>' for kind in `kinds` ('direct' mm, 'log' with smearing)."""
     X, Y = E.load(fset)
     y, rain = Y["y_reg"], E.rain_today(X.index)
-    p_all = pd.read_parquet(Path(E.SPLITS[split][2]) / f"{HURDLE_CLASSIFIER}__cls__{fset}__seed{seed}.parquet")["pred"]
-    out = {"direct": ([], []), "log": ([], [])}
+    p_all = hurdle_probs(fset, seed, split, classifier)
+    out = {kind: ([], []) for kind in kinds}
     for k, (tr, va) in enumerate(E.SPLITS[split][0](X.index), 1):
         wet = tr[y[tr].to_numpy() >= WET_MM]
         refs = E.references("reg", X, Y, rain, tr, va)
         p = p_all.loc[va].to_numpy()
-        est, _, _ = _fit(factory, seed, X, y, wet)
-        amount = {"direct": np.clip(est.predict(X.loc[va]), WET_MM, None)}
-        z = np.log1p(y)
-        est, inner, sl = _fit(factory, seed, X, z, wet)
-        amount["log"] = np.clip(np.exp(est.predict(X.loc[va])) * _smearing(inner, X, z, sl) - 1, WET_MM, None)
-        for kind, m in amount.items():
+        for kind in kinds:
+            m = hurdle_amount(factory, seed, X, y, wet, va, kind)
             pred = p * m
             out[kind][0].append({"fold": k, **E.score("reg", y[va], pred, np.nan, refs, va)})
             out[kind][1].append(pd.DataFrame({"fold": k, "y_true": y[va].to_numpy(), "pred": pred, "p_wet": p,
                                               "amount_if_wet": m}, index=va))
-    return pd.concat([_store(f"hurdle_{name}_{kind}", fset, seed, r, o, save, split) for kind, (r, o) in out.items()])
+    return pd.concat([_store(f"hurdle_{name}_{kind}{suffix}", fset, seed, r, o, save, split, results_path)
+                      for kind, (r, o) in out.items()])

@@ -1,0 +1,30 @@
+{
+  "model": "mlp_huber",
+  "task": "reg",
+  "feature_set": "B",
+  "objective": "MAE",
+  "direction": "minimize",
+  "best_value": 6.8892412550752224,
+  "best_trial": 0,
+  "best_params": {
+    "n_layers": 2,
+    "units": 120,
+    "dropout": 0.292797576724562,
+    "weight_decay": 0.0002481040974867811,
+    "lr": 0.0002051338263087451,
+    "batch_size": 256
+  },
+  "logged_metrics": {
+    "MAE": 6.8892412550752224,
+    "MSESS": 0.18825132199390557,
+    "RMSE": 14.389190970541168,
+    "bias": -3.412350083088999,
+    "MAE_wet": 11.942137508602176,
+    "MSESS_vs_seas_pers": -0.05518963533882424
+  },
+  "trial_states": {
+    "PRUNED": 19,
+    "COMPLETE": 11
+  },
+  "tuning_seconds": 838.6136569976807
+}

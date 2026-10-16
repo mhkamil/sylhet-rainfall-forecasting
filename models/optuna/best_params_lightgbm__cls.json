@@ -1,0 +1,34 @@
+{
+  "model": "lightgbm",
+  "task": "cls",
+  "feature_set": "B",
+  "objective": "BSS",
+  "direction": "maximize",
+  "best_value": 0.2671526100468463,
+  "best_trial": 12,
+  "best_params": {
+    "learning_rate": 0.011069463370556639,
+    "num_leaves": 20,
+    "min_child_samples": 18,
+    "colsample_bytree": 0.6627123354086457,
+    "subsample": 0.7676292455763432,
+    "reg_alpha": 0.012053313802166206,
+    "reg_lambda": 7.277010297562068
+  },
+  "logged_metrics": {
+    "BSS": 0.2671526100468463,
+    "PR_AUC": 0.9531292618082506,
+    "ROC_AUC": 0.956043270421041,
+    "Brier": 0.07755527056943082,
+    "CSI": 0.8211186524002514,
+    "log_loss": 0.26444691522854835,
+    "ECE": 0.030962735084399916,
+    "BSS_vs_seas_pers": 0.10262959612644082
+  },
+  "trial_states": {
+    "COMPLETE": 35,
+    "PRUNED": 15,
+    "FAIL": 1
+  },
+  "tuning_seconds": 327.05527353286743
+}

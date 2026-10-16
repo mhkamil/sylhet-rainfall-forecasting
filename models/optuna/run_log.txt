@@ -1,0 +1,36 @@
+('reg', 'catboost_tweedie'): 31.9 min
+('reg', 'hurdle_catboost_log'): 25.9 min
+('reg', 'catboost'): 106.9 min
+--- restart Fri Oct 16 15:18:50 UTC 2026
+('reg', 'hurdle_catboost_log'): 0.0 min
+('reg', 'catboost'): 0.0 min
+('reg', 'catboost_tweedie'): 0.0 min
+('cls', 'logreg_l2'): 11.0 min
+('cls', 'logreg_l1'): 19.3 min
+('cls', 'sgd_logloss'): 3.7 min
+('cls', 'logreg_enet'): 26.1 min
+('cls', 'xgboost'): 17.9 min
+('reg', 'ridge'): 0.8 min
+('cls', 'catboost'): 42.4 min
+--- restart Fri Oct 16 16:30:22 UTC 2026 (Lasso/EN: precompute=True, max_iter 200000; studies restarted)
+('reg', 'hurdle_catboost_log'): 0.0 min
+('reg', 'catboost'): 0.0 min
+('reg', 'catboost_tweedie'): 0.0 min
+('cls', 'logreg_l1'): 0.0 min
+('cls', 'catboost'): 0.0 min
+('cls', 'logreg_enet'): 0.0 min
+('cls', 'logreg_l2'): 0.0 min
+('cls', 'xgboost'): 0.0 min
+('reg', 'ridge'): 0.0 min
+('cls', 'sgd_logloss'): 0.0 min
+('reg', 'lasso'): 0.9 min
+('reg', 'elasticnet'): 1.4 min
+('cls', 'mlp'): 4.3 min
+('reg', 'sgd_reg'): 5.1 min
+('cls', 'lightgbm'): 9.7 min
+('reg', 'xgboost'): 19.0 min
+('reg', 'mlp_huber'): 18.4 min
+('reg', 'lightgbm'): 22.2 min
+('reg', 'random_forest'): done
+('cls', 'random_forest'): done
+merged part files: 20
