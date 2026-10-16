@@ -1,0 +1,116 @@
+feature,definition,family,set_A,set_B
+T2M,T2M on day t,current,True,True
+T2M_MAX,T2M_MAX on day t,current,True,True
+T2M_MIN,T2M_MIN on day t,current,True,True
+RH2M,RH2M on day t,current,True,True
+WS2M,WS2M on day t,current,True,True
+PS,PS on day t,current,False,True
+QV2M,QV2M on day t,current,False,True
+T2MDEW,T2MDEW on day t,current,False,True
+WS10M,WS10M on day t,current,False,True
+rain_log1p,rain_log1p on day t = log(1 + PRECTOTCORR mm),current,True,True
+wet_today,1 if PRECTOTCORR on day t >= 1 mm,current,True,True
+T2M_lag1,T2M on day t-1,lag,True,True
+T2M_lag2,T2M on day t-2,lag,True,True
+T2M_lag3,T2M on day t-3,lag,True,True
+T2M_lag5,T2M on day t-5,lag,True,True
+T2M_lag7,T2M on day t-7,lag,True,True
+T2M_MAX_lag1,T2M_MAX on day t-1,lag,True,True
+T2M_MAX_lag2,T2M_MAX on day t-2,lag,True,True
+T2M_MAX_lag3,T2M_MAX on day t-3,lag,True,True
+T2M_MAX_lag5,T2M_MAX on day t-5,lag,True,True
+T2M_MAX_lag7,T2M_MAX on day t-7,lag,True,True
+T2M_MIN_lag1,T2M_MIN on day t-1,lag,True,True
+T2M_MIN_lag2,T2M_MIN on day t-2,lag,True,True
+T2M_MIN_lag3,T2M_MIN on day t-3,lag,True,True
+T2M_MIN_lag5,T2M_MIN on day t-5,lag,True,True
+T2M_MIN_lag7,T2M_MIN on day t-7,lag,True,True
+RH2M_lag1,RH2M on day t-1,lag,True,True
+RH2M_lag2,RH2M on day t-2,lag,True,True
+RH2M_lag3,RH2M on day t-3,lag,True,True
+RH2M_lag5,RH2M on day t-5,lag,True,True
+RH2M_lag7,RH2M on day t-7,lag,True,True
+WS2M_lag1,WS2M on day t-1,lag,True,True
+WS2M_lag2,WS2M on day t-2,lag,True,True
+WS2M_lag3,WS2M on day t-3,lag,True,True
+WS2M_lag5,WS2M on day t-5,lag,True,True
+WS2M_lag7,WS2M on day t-7,lag,True,True
+PS_lag1,PS on day t-1,lag,False,True
+PS_lag2,PS on day t-2,lag,False,True
+PS_lag3,PS on day t-3,lag,False,True
+PS_lag5,PS on day t-5,lag,False,True
+PS_lag7,PS on day t-7,lag,False,True
+QV2M_lag1,QV2M on day t-1,lag,False,True
+QV2M_lag2,QV2M on day t-2,lag,False,True
+QV2M_lag3,QV2M on day t-3,lag,False,True
+QV2M_lag5,QV2M on day t-5,lag,False,True
+QV2M_lag7,QV2M on day t-7,lag,False,True
+T2MDEW_lag1,T2MDEW on day t-1,lag,False,True
+T2MDEW_lag2,T2MDEW on day t-2,lag,False,True
+T2MDEW_lag3,T2MDEW on day t-3,lag,False,True
+T2MDEW_lag5,T2MDEW on day t-5,lag,False,True
+T2MDEW_lag7,T2MDEW on day t-7,lag,False,True
+WS10M_lag1,WS10M on day t-1,lag,False,True
+WS10M_lag2,WS10M on day t-2,lag,False,True
+WS10M_lag3,WS10M on day t-3,lag,False,True
+WS10M_lag5,WS10M on day t-5,lag,False,True
+WS10M_lag7,WS10M on day t-7,lag,False,True
+rain_log1p_lag1,rain_log1p on day t-1,lag,True,True
+rain_log1p_lag2,rain_log1p on day t-2,lag,True,True
+rain_log1p_lag3,rain_log1p on day t-3,lag,True,True
+rain_log1p_lag5,rain_log1p on day t-5,lag,True,True
+rain_log1p_lag7,rain_log1p on day t-7,lag,True,True
+T2M_mean3,mean of T2M over days t-2..t,rolling mean,True,True
+T2M_mean7,mean of T2M over days t-6..t,rolling mean,True,True
+T2M_mean14,mean of T2M over days t-13..t,rolling mean,True,True
+T2M_mean30,mean of T2M over days t-29..t,rolling mean,True,True
+T2M_MAX_mean3,mean of T2M_MAX over days t-2..t,rolling mean,True,True
+T2M_MAX_mean7,mean of T2M_MAX over days t-6..t,rolling mean,True,True
+T2M_MAX_mean14,mean of T2M_MAX over days t-13..t,rolling mean,True,True
+T2M_MAX_mean30,mean of T2M_MAX over days t-29..t,rolling mean,True,True
+T2M_MIN_mean3,mean of T2M_MIN over days t-2..t,rolling mean,True,True
+T2M_MIN_mean7,mean of T2M_MIN over days t-6..t,rolling mean,True,True
+T2M_MIN_mean14,mean of T2M_MIN over days t-13..t,rolling mean,True,True
+T2M_MIN_mean30,mean of T2M_MIN over days t-29..t,rolling mean,True,True
+RH2M_mean3,mean of RH2M over days t-2..t,rolling mean,True,True
+RH2M_mean7,mean of RH2M over days t-6..t,rolling mean,True,True
+RH2M_mean14,mean of RH2M over days t-13..t,rolling mean,True,True
+RH2M_mean30,mean of RH2M over days t-29..t,rolling mean,True,True
+WS2M_mean3,mean of WS2M over days t-2..t,rolling mean,True,True
+WS2M_mean7,mean of WS2M over days t-6..t,rolling mean,True,True
+WS2M_mean14,mean of WS2M over days t-13..t,rolling mean,True,True
+WS2M_mean30,mean of WS2M over days t-29..t,rolling mean,True,True
+PS_mean3,mean of PS over days t-2..t,rolling mean,False,True
+PS_mean7,mean of PS over days t-6..t,rolling mean,False,True
+PS_mean14,mean of PS over days t-13..t,rolling mean,False,True
+PS_mean30,mean of PS over days t-29..t,rolling mean,False,True
+QV2M_mean3,mean of QV2M over days t-2..t,rolling mean,False,True
+QV2M_mean7,mean of QV2M over days t-6..t,rolling mean,False,True
+QV2M_mean14,mean of QV2M over days t-13..t,rolling mean,False,True
+QV2M_mean30,mean of QV2M over days t-29..t,rolling mean,False,True
+T2MDEW_mean3,mean of T2MDEW over days t-2..t,rolling mean,False,True
+T2MDEW_mean7,mean of T2MDEW over days t-6..t,rolling mean,False,True
+T2MDEW_mean14,mean of T2MDEW over days t-13..t,rolling mean,False,True
+T2MDEW_mean30,mean of T2MDEW over days t-29..t,rolling mean,False,True
+WS10M_mean3,mean of WS10M over days t-2..t,rolling mean,False,True
+WS10M_mean7,mean of WS10M over days t-6..t,rolling mean,False,True
+WS10M_mean14,mean of WS10M over days t-13..t,rolling mean,False,True
+WS10M_mean30,mean of WS10M over days t-29..t,rolling mean,False,True
+rain_sum3_log1p,log(1 + sum of PRECTOTCORR over days t-2..t),rolling rain sum,True,True
+rain_sum7_log1p,log(1 + sum of PRECTOTCORR over days t-6..t),rolling rain sum,True,True
+rain_sum14_log1p,log(1 + sum of PRECTOTCORR over days t-13..t),rolling rain sum,True,True
+rain_sum30_log1p,log(1 + sum of PRECTOTCORR over days t-29..t),rolling rain sum,True,True
+wet_run_len,consecutive days >= 1 mm ending on day t (0 if day t is dry),spell,True,True
+days_since_rain,days since the last day >= 1 mm (0 if day t is wet; equals the current dry-run length),spell,True,True
+T2M_chg1,T2M(t) - T2M(t-1),tendency,True,True
+RH2M_chg1,RH2M(t) - RH2M(t-1),tendency,True,True
+PS_chg1,PS(t) - PS(t-1),tendency,False,True
+T2MDEW_chg1,T2MDEW(t) - T2MDEW(t-1),tendency,False,True
+QV2M_chg1,QV2M(t) - QV2M(t-1),tendency,False,True
+DTR,diurnal temperature range T2M_MAX - T2M_MIN on day t,derived,True,True
+DPD,dew-point depression T2M - T2MDEW on day t,derived,False,True
+doy_sin1,sin(2*pi*1*day_of_year/365.25),season,True,True
+doy_cos1,cos(2*pi*1*day_of_year/365.25),season,True,True
+doy_sin2,sin(2*pi*2*day_of_year/365.25),season,True,True
+doy_cos2,cos(2*pi*2*day_of_year/365.25),season,True,True
+month,calendar month of day t (1-12),season,True,True

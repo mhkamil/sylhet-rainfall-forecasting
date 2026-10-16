@@ -1,0 +1,14 @@
+,NaN_before,NaN_after,filled,first_valid,handling
+QV2M,0,0,0,1981-01-01,complete; no action
+RH2M,0,0,0,1981-01-01,complete; no action
+IMERG_PRECTOT,6209,6209,0,1998-01-01,kept with NaN 1981-1997; never a predictor; secondary target 1998+
+T2M,0,0,0,1981-01-01,complete; no action
+T2M_MAX,0,0,0,1981-01-01,complete; no action
+T2M_MIN,0,0,0,1981-01-01,complete; no action
+T2MDEW,0,0,0,1981-01-01,complete; no action
+PS,0,0,0,1981-01-01,complete; no action
+WS2M,0,0,0,1981-01-01,complete; no action
+WS10M,0,0,0,1981-01-01,complete; no action
+ALLSKY_SFC_SW_DWN,1095,1095,0,1984-01-01,kept with NaN 1981-1983; not in Set A/B; Stage-6 ablation from 1984
+PRECTOTCORR,0,0,0,1981-01-01,complete; no action
+WD2M (dropped),0,-,-,"invalid from 2012-12-31 (4,749 days)","dropped (approved plan, item 1)"
