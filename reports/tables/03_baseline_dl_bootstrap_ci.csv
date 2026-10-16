@@ -1,0 +1,7 @@
+,estimate,CI 2.5%,CI 97.5%
+BSS persistence,0.062,-0.041,0.146
+BSS seasonal+persistence,0.224,0.173,0.274
+ROC-AUC climatology,0.944,0.924,0.959
+ROC-AUC seasonal+persistence,0.959,0.945,0.97
+MAE persistence (mm),9.663,7.569,11.742
+MAE seasonal+persistence (mm),9.019,7.053,10.897

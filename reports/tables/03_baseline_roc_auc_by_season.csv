@@ -1,0 +1,4 @@
+model,all year,pre-monsoon,monsoon,post-monsoon,winter
+climatology,0.928,0.82,0.703,0.84,0.653
+persistence,0.878,0.803,0.632,0.829,0.68
+seasonal+persistence,0.945,0.873,0.734,0.907,0.757
