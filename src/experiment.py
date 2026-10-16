@@ -23,6 +23,9 @@ ROOT = Path(__file__).resolve().parents[1]
 PROC = ROOT / "data/processed"
 RESULTS = ROOT / "reports/tables/cv_results.csv"
 OOF_DIR = ROOT / "models/oof"
+# split name -> (function index -> list of (train, validation), results table, OOF directory)
+SPLITS = {"cv": (S.cv_folds, RESULTS, OOF_DIR),
+          "dl": (lambda idx: [S.dl_split(idx)], ROOT / "reports/tables/dl_results.csv", ROOT / "models/dl")}
 TARGET = {"cls": "y_cls", "reg": "y_reg"}
 SLICE_YEARS = 3
 EARLY_STOP_ROUNDS = 100
@@ -126,12 +129,15 @@ def append_results(new, path=RESULTS):
 
 
 # ---------- runners ----------
-def run_cv(name, factory, task, fset, seed=0, save=True, results_path=RESULTS, oof_dir=OOF_DIR):
-    """factory(seed, y_train) -> unfitted estimator. Returns (tidy scores, out-of-fold predictions, fold log)."""
+def run_cv(name, factory, task, fset, seed=0, save=True, results_path=None, oof_dir=None, split="cv"):
+    """factory(seed, y_train) -> unfitted estimator. Returns (tidy scores, out-of-fold predictions, fold log).
+    split="cv": the 5 expanding folds; split="dl": the single DL split (train 1981-2014, validate 2015-2019)."""
+    folds_fn, default_results, default_oof = SPLITS[split]
+    results_path, oof_dir = results_path or default_results, oof_dir or default_oof
     X, Y = load(fset)
     y, rain = Y[TARGET[task]], rain_today(X.index)
     rows, oof, log = [], [], []
-    for k, (tr, va) in enumerate(S.cv_folds(X.index), 1):
+    for k, (tr, va) in enumerate(folds_fn(X.index), 1):
         t0 = time.time()
         est = factory(seed, y[tr])
         boost, thr, n_trees = booster_family(est) is not None, np.nan, np.nan
@@ -161,12 +167,12 @@ def run_cv(name, factory, task, fset, seed=0, save=True, results_path=RESULTS, o
     return res, oof, pd.DataFrame(log)
 
 
-def run_baselines(task, save=True, results_path=RESULTS):
+def run_baselines(task, save=True, results_path=None, split="cv"):
     """Stage-3 baselines scored with the same metrics and stored in the same table (feature_set '-', seed 0)."""
     X, Y = load("A")
     y, rain = Y[TARGET[task]], rain_today(X.index)
     rows = {}
-    for k, (tr, va) in enumerate(S.cv_folds(X.index), 1):
+    for k, (tr, va) in enumerate(SPLITS[split][0](X.index), 1):
         refs = references(task, X, Y, rain, tr, va)
         fit_preds = references(task, X, Y, rain, tr, tr) if task == "cls" else None
         for name, p in refs.items():
@@ -174,7 +180,7 @@ def run_baselines(task, save=True, results_path=RESULTS):
             rows.setdefault(name, []).append({"fold": k, **score(task, y[va], p, thr, refs, va)})
     res = pd.concat([tidy(r, f"baseline:{n}", task, "-", 0) for n, r in rows.items()])
     if save:
-        append_results(res, results_path)
+        append_results(res, results_path or SPLITS[split][1])
     return res
 
 

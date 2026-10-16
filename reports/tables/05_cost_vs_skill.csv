@@ -1,0 +1,57 @@
+family,model,BSS (cls),MAE (reg),MSESS (reg),fit seconds
+baseline,baseline:climatology,0.0,10.974,0.0,
+baseline,baseline:majority,-1.548,14.192,-0.193,
+baseline,baseline:persistence,0.062,9.663,0.253,
+baseline,baseline:seasonal,-0.021,11.081,-0.002,
+baseline,baseline:seasonal+persistence,0.224,9.019,0.343,
+classical,catboost (B),0.321,9.15,0.31,4.377
+classical,catboost+log_naive (B),,9.815,0.157,
+classical,catboost+log_smear (B),,8.973,0.329,
+classical,catboost_tweedie (B),,9.158,0.288,4.042
+classical,elasticnet (B),,9.705,0.238,0.327
+classical,hurdle_catboost_direct (B),,9.167,0.305,
+classical,hurdle_catboost_log (B),,8.879,0.369,
+classical,lasso (B),,9.613,0.249,0.18
+classical,lightgbm (B),0.328,9.232,0.31,1.803
+classical,lightgbm_tweedie (B),,9.488,0.225,1.411
+classical,linreg (B),,9.407,0.286,0.14
+classical,logreg_enet (B),0.295,,,6.179
+classical,logreg_l1 (B),0.298,,,9.446
+classical,logreg_l2 (B),0.297,,,6.545
+classical,logreg_none (B),0.299,,,16.167
+classical,mlp (B),0.287,,,4.635
+classical,mlp_huber (B),,9.396,0.252,4.623
+classical,mlp_mae (B),,9.511,0.21,6.227
+classical,mlp_mse (B),,9.113,0.334,4.211
+classical,random_forest (B),0.273,9.169,0.333,20.686
+classical,ridge (B),,9.409,0.286,0.108
+classical,sgd_logloss (B),0.246,,,0.781
+classical,sgd_reg (B),,9.542,0.292,0.195
+classical,xgboost (B),0.32,9.215,0.316,2.5
+classical,xgboost_tweedie (B),,9.447,0.234,2.237
+deep,tft bin opt3_isotonic,0.298,,,
+deep,tft bin opt3_raw,0.307,,,
+deep,tft mm opt1_isotonic,0.263,,,
+deep,tft mm opt1_platt,0.272,,,
+deep,tft mm opt2_isotonic,0.26,,,
+deep,tft mm opt2_raw,0.261,,,
+deep,tft q50,,9.645,0.176,292.694
+deep,tft qmean,,9.185,0.28,292.694
+deep,tide bin opt3_isotonic,0.188,,,
+deep,tide bin opt3_raw,0.186,,,
+deep,tide log opt1_isotonic,0.25,,,
+deep,tide log opt1_platt,0.244,,,
+deep,tide log_naive,,9.199,0.283,80.442
+deep,tide log_smear,,9.434,0.398,80.442
+deep,tide mm,,9.912,0.37,38.175
+deep,tide mm opt1_isotonic,0.084,,,
+deep,tide mm opt1_platt,0.106,,,
+deep,tsmixer bin opt3_isotonic,0.271,,,
+deep,tsmixer bin opt3_raw,0.279,,,
+deep,tsmixer log opt1_isotonic,0.26,,,
+deep,tsmixer log opt1_platt,0.25,,,
+deep,tsmixer log_naive,,10.072,0.136,50.895
+deep,tsmixer log_smear,,9.195,0.299,50.895
+deep,tsmixer mm,,9.236,0.307,40.139
+deep,tsmixer mm opt1_isotonic,0.211,,,
+deep,tsmixer mm opt1_platt,0.226,,,

@@ -1,0 +1,15 @@
+,encoder_mean,encoder_std
+doy_sin2_futcov,21.32,23.82
+QV2M_pastcov,20.77,9.25
+RH2M_pastcov,15.08,12.9
+doy_sin1_futcov,8.49,5.8
+doy_cos2_futcov,6.08,1.85
+doy_cos1_futcov,5.02,1.98
+T2M_MIN_pastcov,4.76,1.62
+PS_pastcov,4.66,1.96
+T2M_MAX_pastcov,3.7,1.5
+T2M_pastcov,2.96,0.44
+WS2M_pastcov,2.9,0.51
+T2MDEW_pastcov,2.34,0.31
+PRECTOTCORR_target,0.99,0.18
+WS10M_pastcov,0.92,0.23
