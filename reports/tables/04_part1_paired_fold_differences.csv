@@ -1,0 +1,12 @@
+comparison,metric,fold 1,fold 2,fold 3,fold 4,fold 5,mean diff,better in
+catboost (B) - baseline:seasonal+persistence (-),BSS,0.048,0.071,0.084,0.081,0.105,0.078,5/5
+logreg_l1 (B) - baseline:seasonal+persistence (-),BSS,0.06,0.066,0.083,0.062,0.075,0.069,5/5
+random_forest (B) - baseline:seasonal+persistence (-),BSS,0.04,0.055,0.077,0.029,0.058,0.052,5/5
+catboost (B) - logreg_l1 (B),BSS,-0.012,0.005,0.0,0.019,0.03,0.009,4/5
+logreg_l1 (B) - logreg_l1 (A),BSS,0.003,0.016,0.008,0.001,0.001,0.006,5/5
+lightgbm (B) - lightgbm (A),BSS,-0.006,0.008,0.019,-0.004,-0.013,0.001,2/5
+catboost (A) - baseline:seasonal+persistence (-),MAE,-0.293,-0.069,0.125,0.015,-0.176,-0.08,3/5
+lightgbm (B) - baseline:seasonal+persistence (-),MAE,-0.213,-0.073,0.122,0.104,-0.233,-0.059,3/5
+ridge (B) - baseline:seasonal+persistence (-),MAE,0.254,0.418,0.339,0.266,0.34,0.323,0/5
+catboost (A) - ridge (B),MAE,-0.547,-0.487,-0.214,-0.251,-0.516,-0.403,5/5
+catboost (B) - catboost (A),MAE,0.032,0.004,-0.043,0.115,-0.071,0.007,2/5
