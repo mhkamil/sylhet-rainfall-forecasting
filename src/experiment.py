@@ -49,12 +49,15 @@ def inner_split(train_idx, years=SLICE_YEARS):
 # ---------- gradient-boosting helpers (each library has its own early-stopping API) ----------
 def booster_family(est):
     name = type(est).__name__
-    return next((f for f in ("XGB", "LGBM", "CatBoost") if name.startswith(f)), None)
+    return next((f for f in ("XGB", "LGBM", "CatBoost", "TorchMLP") if name.startswith(f)), None)
 
 
 def fit_early_stopping(est, Xa, ya, Xb, yb, rounds=EARLY_STOP_ROUNDS):
-    """Fit with early stopping on (Xb, yb); return the best number of trees."""
+    """Fit with early stopping on (Xb, yb); return the best number of trees (epochs for the MLP)."""
     fam = booster_family(est)
+    if fam == "TorchMLP":
+        est.fit(Xa, ya, eval_set=(Xb, yb))
+        return est.best_epoch_
     if fam == "XGB":
         est.set_params(early_stopping_rounds=rounds)
         est.fit(Xa, ya, eval_set=[(Xb, yb)], verbose=False)
@@ -72,6 +75,8 @@ def set_trees(est, n):
         est.set_params(n_estimators=n, early_stopping_rounds=None)
     elif booster_family(est) == "LGBM":
         est.set_params(n_estimators=n)
+    elif booster_family(est) == "TorchMLP":
+        est.set_params(max_epochs=n, patience=None)          # refit for exactly the early-stopped number of epochs
     else:
         est.set_params(iterations=n)
 

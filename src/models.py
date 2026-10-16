@@ -88,3 +88,34 @@ def _rf(task):
 def trees(task):
     """name -> factory for the tree family; all are stochastic (5 seeds)."""
     return {"random_forest": _rf(task), "xgboost": _xgb(task), "lightgbm": _lgbm(task), "catboost": _cat(task)}
+
+
+# ---------- Stage 4.4: MLP (PyTorch; see src/mlp.py) ----------
+def mlp(task, loss=None):
+    """2 x 64 ReLU MLP, dropout 0.1, AdamW weight decay 1e-4, early stopping on the slice (patience 15)."""
+    from mlp import TorchMLP
+    loss = loss or ("bce" if task == "cls" else "huber")
+    return lambda s, y: TorchMLP(task=task, loss=loss, seed=s)
+
+
+# ---------- Stage 4.5: Tweedie-loss boosters (variance power 1.5; predictions are in mm for all three) ----------
+TWEEDIE_POWER = 1.5
+
+
+def tweedie():
+    import catboost as cb
+    import lightgbm as lgb
+    import xgboost as xgb
+    xgb_common = dict(n_estimators=2000, learning_rate=0.03, max_depth=5, min_child_weight=5, subsample=0.8,
+                      colsample_bytree=0.8, reg_lambda=1.0, tree_method="hist", n_jobs=4)
+    return {
+        "xgboost_tweedie": lambda s, y: xgb.XGBRegressor(**xgb_common, objective="reg:tweedie",
+                                                         tweedie_variance_power=TWEEDIE_POWER, random_state=s),
+        "lightgbm_tweedie": lambda s, y: lgb.LGBMRegressor(
+            n_estimators=2000, learning_rate=0.03, num_leaves=31, min_child_samples=20, subsample=0.8, subsample_freq=1,
+            colsample_bytree=0.8, n_jobs=4, verbose=-1, objective="tweedie", tweedie_variance_power=TWEEDIE_POWER,
+            random_state=s),
+        "catboost_tweedie": lambda s, y: cb.CatBoostRegressor(
+            iterations=2000, learning_rate=0.05, depth=6, thread_count=4, verbose=0, allow_writing_files=False,
+            loss_function=f"Tweedie:variance_power={TWEEDIE_POWER}", random_seed=s),
+    }
