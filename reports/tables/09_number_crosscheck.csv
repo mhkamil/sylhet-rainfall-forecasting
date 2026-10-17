@@ -1,0 +1,283 @@
+line,file,key,name,stated,csv_value,value_ok,in_text
+14,09_derived_numbers.csv,*,test_days,"2,192",2192.0,True,True
+14,07_test_cls_bootstrap.csv,index=catboost,BSS,0.376,0.3763084721487447,True,True
+14,07_test_cls_bootstrap.csv,index=catboost,BSS_lo,0.324,0.3238870361836056,True,True
+14,07_test_cls_bootstrap.csv,index=catboost,BSS_hi,0.423,0.4233178602926834,True,True
+14,07_test_cls_bootstrap.csv,index=baseline:seasonal+persistence,BSS,0.269,0.268532312033986,True,True
+14,09_derived_numbers.csv,*,famA_cls_learner_dBSS_min,0.070,0.0698847718874129,True,True
+14,09_derived_numbers.csv,*,famA_cls_learner_dBSS_max,0.108,0.1077761601147587,True,True
+14,09_derived_numbers.csv,*,famA_cls_learner_p_holm_max,0.0001,0.0001125699980081,True,True
+14,09_derived_numbers.csv,*,famB_cls_learner_p_holm_min,0.065,0.0645817803421526,True,True
+14,07_test_reg_bootstrap.csv,index=catboost_tweedie,MAE,8.534,8.533666352790647,True,True
+14,07_test_reg_bootstrap.csv,index=baseline:seasonal+persistence,MAE,8.797,8.796819821033361,True,True
+14,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,p_holm,0.160,0.1597896643549149,True,True
+14,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,significant,False,False,True,True
+14,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,estimate,0.047,0.0474738064690836,True,True
+14,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,p_holm,0.023,0.0225866026965379,True,True
+14,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,significant,True,True,True,True
+14,07_imerg_secondary_cls.csv,index=catboost,vs IMERG/BSS,0.004,0.004,True,True
+61,09_derived_numbers.csv,*,n_features_A,71,71.0,True,True
+61,09_derived_numbers.csv,*,n_features_B,115,115.0,True,True
+61,09_derived_numbers.csv,*,n_rows,"16,406",16406.0,True,True
+63,02_leakage_correlation_scan_train.csv,index=rain_log1p,abs_max,0.81,0.81,True,True
+63,02_leakage_truncation_test.csv,,,,,True,True
+69,09_derived_numbers.csv,*,test_days,"2,192",2192.0,True,True
+83,06_tuning_budget.csv,task=cls & model=random_forest,budget,15,15,True,True
+83,06_tuning_budget.csv,task=cls & model=sgd_logloss,budget,100,100,True,True
+107,09_derived_numbers.csv,*,prectotcorr_mean_1981_1997,"1,925",1924.8823529411768,True,True
+107,09_derived_numbers.csv,*,prectotcorr_mean_1998_2015,"2,970",2970.277777777778,True,True
+107,09_derived_numbers.csv,*,prectotcorr_mean_2016_2025,"5,377",5377.2,True,True
+107,09_derived_numbers.csv,*,imerg_mean_1998_2015,"3,680",3680.1666666666665,True,True
+107,09_derived_numbers.csv,*,imerg_mean_2016_2025,"3,757",3757.1,True,True
+107,01_pettitt_tests.csv,index=PRECTOTCORR 1981-2025,p_value,0.0000007,7.175433094116497e-07,True,True
+107,01_pettitt_tests.csv,index=PRECTOTCORR 1998-2025,p_value,0.0002,0.0002390627333946,True,True
+107,01_pettitt_tests.csv,index=IMERG_PRECTOT 1998-2025,p_value,1.0,1.0,True,True
+107,01_pettitt_tests.csv,index=ratio 1998-2025,mean_before,0.82,0.8188056936636496,True,True
+107,01_pettitt_tests.csv,index=ratio 1998-2025,mean_after,1.44,1.436140675732251,True,True
+107,02_threshold_evidence.csv,index=>= 1.0 mm,rain_day_share,49.4%,0.493681550126369,True,True
+107,09_derived_numbers.csv,*,test_wet_share,55.7%,0.5565693430656934,True,True
+107,09_derived_numbers.csv,*,test_mean_mm,14.13,14.127901459854014,True,True
+107,09_derived_numbers.csv,*,test_max_mm,202,202.35,True,True
+107,02_threshold_evidence.csv,index=>= 1.0 mm,kappa_IMERG,0.750,0.7502984680346757,True,True
+109,01_acf_pacf_lags1-7.csv,lag=1,ACF_PRECTOTCORR,0.58,0.579,True,True
+109,03_baseline_cv_summary_y_cls.csv,index=seasonal+persistence,BSS/mean,0.184,0.1836,True,True
+109,03_baseline_cv_summary_y_cls.csv,index=seasonal+persistence,BSS/std,0.058,0.0578,True,True
+109,03_baseline_cv_summary_y_reg.csv,index=seasonal+persistence,MAE/mean,7.079,7.0786,True,True
+109,03_baseline_cv_summary_y_reg.csv,index=seasonal+persistence,MSESS/mean,0.228,0.2278,True,True
+109,03_baseline_cv_summary_y_cls.csv,index=persistence,BSS/mean,-0.020,-0.0202,True,True
+109,03_baseline_cv_summary_y_cls.csv,index=climatology,ROC_AUC/mean,0.928,0.9281,True,True
+113,06_default_vs_tuned.csv,task=cls & model=lightgbm,tuned,0.265,0.2649791620310606,True,True
+113,06_default_vs_tuned.csv,task=cls & model=lightgbm,Δ,0.006,0.0058706862835177,True,True
+113,06_default_vs_tuned.csv,task=cls & model=catboost,tuned,0.265,0.2647963962141061,True,True
+113,06_default_vs_tuned.csv,task=cls & model=catboost,Δ,0.004,0.0035984003326966,True,True
+113,06_default_vs_tuned.csv,task=cls & model=xgboost,tuned,0.263,0.2630616329453694,True,True
+113,06_default_vs_tuned.csv,task=cls & model=xgboost,Δ,0.005,0.0045472137382751,True,True
+113,09_derived_numbers.csv,*,seed0_optimism_lightgbm,0.003,0.0030853754990081,True,True
+113,09_derived_numbers.csv,*,seed0_optimism_catboost,0.004,0.0040681332041183,True,True
+113,06_default_vs_tuned.csv,task=cls & model=sgd_logloss,default,0.189,0.1889953709820669,True,True
+113,06_default_vs_tuned.csv,task=cls & model=sgd_logloss,tuned,0.253,0.2528710277800129,True,True
+113,06_default_vs_tuned.csv,task=cls & model=logreg_l1,Δ,0.0007,0.0007450375899794,True,True
+115,04_jensen_log_backtransform.csv,index=catboost,bias/log_naive,-4.774,-4.774,True,True
+115,04_jensen_log_backtransform.csv,index=catboost,bias/log_smear,-1.071,-1.071,True,True
+115,04_jensen_log_backtransform.csv,index=catboost,smear_factor,1.587,1.587,True,True
+115,06_default_vs_tuned.csv,task=reg & model=catboost_tweedie,tuned,6.897,6.897168541553211,True,True
+115,03_baseline_cv_summary_y_reg.csv,index=seasonal+persistence,MAE/mean,7.079,7.0786,True,True
+115,06_hurdle_mae_vs_msess.csv,model=hurdle_catboost_log,MSESS,0.276,0.2761177813070034,True,True
+115,06_hurdle_mae_vs_msess.csv,model=hurdle_catboost_log_tuned,MSESS,0.278,0.2782281982527513,True,True
+115,06_hurdle_mae_vs_msess.csv,model=hurdle_catboost_log_msess_tuned,MSESS,0.275,0.2753094812580133,True,True
+115,09_derived_numbers.csv,*,ridge_alpha_retuned,236,235.8594058414266,True,True
+117,06_deep_cost_vs_skill.csv,model=tft default & task=cls,value,0.307,0.30655766070903,True,True
+117,06_deep_cost_vs_skill.csv,model=tft tuned & task=cls,value,0.305,0.3049157917721699,True,True
+117,06_deep_cost_vs_skill.csv,model=tsmixer default & task=reg,value,9.19,9.194742796003233,True,True
+117,06_deep_cost_vs_skill.csv,model=tsmixer tuned & task=reg,value,9.59,9.593229919422104,True,True
+117,06_deep_cost_vs_skill.csv,model=tide default & task=cls,value,0.186,0.1860054291304294,True,True
+117,06_deep_cost_vs_skill.csv,model=tide tuned & task=cls,value,0.214,0.2135039260636093,True,True
+117,06_deep_tuned_vs_default_bootstrap.csv,model=tide & task=cls,estimate,0.027,0.0273056334803982,True,True
+117,06_deep_tuned_vs_default_bootstrap.csv,model=tide & task=cls,ci_low,0.016,0.0155637026207703,True,True
+117,06_deep_tuned_vs_default_bootstrap.csv,model=tide & task=cls,ci_high,0.040,0.0401031384461893,True,True
+121,07_test_cls_bootstrap.csv,index=catboost,BSS,0.376,0.3763084721487447,True,True
+121,07_test_cls_bootstrap.csv,index=catboost,BSS_lo,0.324,0.3238870361836056,True,True
+121,07_test_cls_bootstrap.csv,index=catboost,BSS_hi,0.423,0.4233178602926834,True,True
+121,07_test_cls_bootstrap.csv,index=deep:tft,BSS,0.372,0.3718349045931973,True,True
+121,07_test_cls_bootstrap.csv,index=xgboost,BSS,0.369,0.3690687117944913,True,True
+121,07_test_cls_bootstrap.csv,index=lightgbm,BSS,0.368,0.368224534050995,True,True
+121,07_test_cls_bootstrap.csv,index=logreg_l1,BSS,0.351,0.3508058787500459,True,True
+121,07_test_cls_bootstrap.csv,index=sgd_logloss,BSS,0.360,0.3595549988684857,True,True
+121,07_test_cls_bootstrap.csv,index=mlp,BSS,0.357,0.3570776791796924,True,True
+121,07_test_cls_bootstrap.csv,index=deep:tsmixer,BSS,0.342,0.3416681179285106,True,True
+121,07_test_cls_bootstrap.csv,index=random_forest,BSS,0.338,0.3384170839213989,True,True
+121,07_test_cls_bootstrap.csv,index=random_forest,ROC_AUC,0.968,0.967877622613506,True,True
+121,07_test_cls_bootstrap.csv,index=catboost,ROC_AUC,0.972,0.9716116845442896,True,True
+121,07_test_cls_bootstrap.csv,index=catboost,ECE,0.023,0.0231416955010653,True,True
+121,07_test_cls_bootstrap.csv,index=xgboost,ECE,0.018,0.0175346045221208,True,True
+123,07_test_cls_bootstrap.csv,index=baseline:seasonal+persistence,BSS,0.269,0.268532312033986,True,True
+123,07_test_cls_bootstrap.csv,index=baseline:seasonal+persistence,BSS_lo,0.213,0.2129230200138869,True,True
+123,07_test_cls_bootstrap.csv,index=baseline:seasonal+persistence,BSS_hi,0.321,0.3211077433511304,True,True
+123,09_derived_numbers.csv,*,famA_cls_learner_dBSS_min,0.070,0.0698847718874129,True,True
+123,09_derived_numbers.csv,*,famA_cls_learner_dBSS_max,0.108,0.1077761601147587,True,True
+123,09_derived_numbers.csv,*,famA_cls_learner_p_holm_max,0.0001,0.0001125699980081,True,True
+123,09_derived_numbers.csv,*,famA_cls_learners_significant,12,12.0,True,True
+123,07_statistical_comparison.csv,family=A & task=cls & model=deep:tide,estimate,-0.042,-0.0420299115804825,True,True
+123,07_statistical_comparison.csv,family=A & task=cls & model=deep:tide,ci_low,-0.066,-0.0663404398632541,True,True
+123,07_statistical_comparison.csv,family=A & task=cls & model=deep:tide,ci_high,-0.017,-0.0170208853694716,True,True
+123,07_statistical_comparison.csv,family=A & task=cls & model=deep:tide,p_holm,0.008,0.007987197795052,True,True
+123,07_statistical_comparison.csv,family=A & task=cls & model=deep:tide,significant,True,True,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=catboost,estimate,0.008,0.0080839380977497,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=catboost,ci_low,-0.002,-0.0023556399281451,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=catboost,ci_high,0.018,0.0181047652892835,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=catboost,p_holm,1.000,1.0,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=catboost,significant,False,False,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,estimate,0.004,0.0036103705422023,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,ci_low,-0.017,-0.0173921534076034,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,ci_high,0.025,0.0248353885149544,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,p_holm,1.000,1.0,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,significant,False,False,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=random_forest,estimate,-0.030,-0.029807450129596,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=random_forest,ci_low,-0.051,-0.0508674090935059,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=random_forest,ci_high,-0.009,-0.0089039510916937,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=random_forest,p_holm,0.065,0.0645817803421526,True,True
+123,07_statistical_comparison.csv,family=B & task=cls & model=random_forest,significant,False,False,True,True
+125,09_derived_numbers.csv,*,test_minus_dev_BSS_learner_min,0.093,0.093,True,True
+125,09_derived_numbers.csv,*,test_minus_dev_BSS_learner_max,0.117,0.117,True,True
+125,07_dev_vs_test_ranking.csv,task=cls & metric=BSS & model=baseline:seasonal+persistence,test - dev,0.085,0.085,True,True
+125,09_derived_numbers.csv,*,spearman_dev_test_BSS,0.89,0.8941707632049479,True,True
+179,07_test_reg_bootstrap.csv,index=catboost_tweedie,MAE,8.534,8.533666352790647,True,True
+179,07_test_reg_bootstrap.csv,index=catboost_tweedie,MAE_lo,6.711,6.710550645519037,True,True
+179,07_test_reg_bootstrap.csv,index=catboost_tweedie,MAE_hi,10.359,10.359374432926057,True,True
+179,07_test_reg_bootstrap.csv,index=baseline:seasonal+persistence,MAE,8.797,8.796819821033361,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,estimate,-0.263,-0.2631534682427148,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,ci_low,-0.493,-0.4934287972002273,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,ci_high,-0.031,-0.0306539383769357,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,p,0.023,0.0228270949078449,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,p_holm,0.160,0.1597896643549149,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,significant,False,False,True,True
+179,09_derived_numbers.csv,*,famA_mae_better_significant,0,0.0,True,True
+179,09_derived_numbers.csv,*,famA_mae_worse_significant,7,7.0,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=lasso,p_holm,0.053,0.053483905539326,True,True
+179,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=lasso,significant,False,False,True,True
+181,07_test_reg_bootstrap.csv,index=deep:tsmixer,MSESS,0.417,0.4173498862216418,True,True
+181,07_test_reg_bootstrap.csv,index=deep:tsmixer,MSESS_lo,0.356,0.3555667557786883,True,True
+181,07_test_reg_bootstrap.csv,index=deep:tsmixer,MSESS_hi,0.468,0.4678838015877969,True,True
+181,07_test_reg_bootstrap.csv,index=hurdle_catboost_log_msess,MSESS,0.396,0.3964144087078798,True,True
+181,07_test_reg_bootstrap.csv,index=catboost_tweedie,MSESS,0.395,0.394683343999867,True,True
+181,07_test_reg_bootstrap.csv,index=lightgbm,MSESS,0.395,0.3954381765340921,True,True
+181,07_test_reg_bootstrap.csv,index=baseline:seasonal+persistence,MSESS,0.370,0.3698760797525581,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,estimate,0.047,0.0474738064690836,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,ci_low,0.019,0.0191466292900962,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,ci_high,0.076,0.0755199468654665,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,p_holm,0.023,0.0225866026965379,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=deep:tsmixer,significant,True,True,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=lasso,p_holm,0.030,0.0303190248020032,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=lasso,significant,True,True,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=elasticnet,p_holm,0.020,0.0204445129446319,True,True
+181,07_statistical_comparison.csv,family=A & task=reg & loss=sq_error & model=elasticnet,significant,True,True,True,True
+181,07_test_reg_bootstrap.csv,index=catboost_tweedie,bias,-2.74,-2.7388970865842404,True,True
+181,07_test_reg_bootstrap.csv,index=catboost_tweedie,recall_ge50,0.22,0.2215568862275449,True,True
+181,07_test_reg_bootstrap.csv,index=hurdle_catboost_log_msess,bias,1.66,1.6631042432650578,True,True
+181,07_test_reg_bootstrap.csv,index=hurdle_catboost_log_msess,recall_ge50,0.49,0.4910179640718562,True,True
+181,07_test_reg_bootstrap.csv,index=baseline:seasonal+persistence,recall_ge50,0.21,0.2095808383233532,True,True
+183,07_test_reg_per_seed.csv,model=deep:tsmixer & seed=1,MAE,13.2,13.21343515542302,True,True
+183,07_test_reg_bootstrap.csv,index=deep:tsmixer,MAE,9.299,9.29886487600142,True,True
+183,09_paper_table2.csv,Model=TSMixer,MAE seed SD,1.919,1.919,True,True
+185,07_imerg_secondary_cls.csv,index=catboost,vs IMERG/ROC_AUC,0.921,0.921,True,True
+185,07_imerg_secondary_cls.csv,index=catboost,vs IMERG/BSS,0.004,0.004,True,True
+185,07_imerg_secondary_cls.csv,index=deep:tide,vs IMERG/BSS,-0.074,-0.074,True,True
+185,07_imerg_secondary_cls.csv,index=deep:tft,vs IMERG/BSS,0.029,0.029,True,True
+185,07_imerg_secondary_reg.csv,index=hurdle_catboost_log_msess,vs IMERG/MSESS,-0.115,-0.115,True,True
+185,07_imerg_secondary_reg.csv,index=deep:tft,vs IMERG/MSESS,0.179,0.179,True,True
+243,06_deep_cost_vs_skill.csv,model=lightgbm_tuned & task=cls,value,0.329,0.3288765612201375,True,True
+243,06_deep_cost_vs_skill.csv,model=lightgbm_tuned & task=cls,fit_s,9,9.286080980300904,True,True
+243,06_deep_cost_vs_skill.csv,model=tft default & task=cls,value,0.307,0.30655766070903,True,True
+243,06_deep_cost_vs_skill.csv,model=tft default & task=cls,fit_s,228,227.5912395000458,True,True
+243,06_deep_cost_vs_skill.csv,model=tft tuned & task=cls,value,0.305,0.3049157917721699,True,True
+243,06_deep_cost_vs_skill.csv,model=tft tuned & task=cls,fit_s,651,650.840926027298,True,True
+243,06_deep_cost_vs_skill.csv,model=seasonal+persistence & task=cls,value,0.224,0.2238914013017605,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,estimate,0.004,0.0036103705422023,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,p_holm,1.000,1.0,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tft,significant,False,False,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tsmixer,estimate,-0.027,-0.0265564161224843,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tsmixer,ci_low,-0.054,-0.0544280961390378,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tsmixer,ci_high,0.003,0.0025650339584901,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tsmixer,p_holm,0.447,0.4470624857578874,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tsmixer,significant,False,False,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tide,estimate,-0.142,-0.1417221335974915,True,True
+243,07_statistical_comparison.csv,family=B & task=cls & model=deep:tide,significant,True,True,True,True
+245,07_test_reg_bootstrap.csv,index=deep:tide,bias,0.602,0.601763318741191,True,True
+245,07_test_reg_bootstrap.csv,index=deep:tide,recall_ge50,0.455,0.4550898203592814,True,True
+245,07_test_reg_bootstrap.csv,index=deep:tsmixer,bias,-0.070,-0.0697046703709302,True,True
+245,07_test_reg_bootstrap.csv,index=deep:tsmixer,recall_ge50,0.305,0.3053892215568862,True,True
+245,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=deep:tide,significant,True,True,True,True
+245,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=deep:tsmixer,p_holm,0.002,0.0024932877325579,True,True
+245,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=deep:tsmixer,significant,True,True,True,True
+245,09_tft_interval_coverage_test.csv,quantity=coverage80,mean,85.2%,0.8524635036496351,True,True
+245,09_tft_interval_coverage_test.csv,quantity=coverage80,std,1.3%,0.0134622812780459,True,True
+245,09_tft_interval_coverage_test.csv,quantity=coverage90,mean,92.5%,0.9251824817518248,True,True
+245,09_tft_interval_coverage_test.csv,quantity=share_above_q95,mean,6.1%,0.0611313868613138,True,True
+245,05_deep_regression_L14.csv,model=tft & target=qmean,coverage80,82.1%,0.821 ± 0.009,True,True
+245,05_deep_regression_L14.csv,model=tft & target=qmean,coverage90,89.2%,0.892 ± 0.007,True,True
+245,07_test_reg_bootstrap.csv,index=deep:tft,MAE,8.604,8.604110895843402,True,True
+245,07_test_reg_bootstrap.csv,index=deep:tft,recall_ge50,0.060,0.059880239520958,True,True
+249,06_ablation_master.csv,variant=win_2010 & model=lightgbm & metric=dBSS,estimate,abs(0.061),-0.0612834891427275,True,True
+249,06_ablation_master.csv,variant=win_2010 & model=lightgbm & metric=dBSS,ci_low,abs(0.091),-0.0914189267553266,True,True
+249,06_ablation_master.csv,variant=win_2010 & model=lightgbm & metric=dBSS,ci_high,abs(0.028),-0.0283393144495807,True,True
+249,06_ablation_master.csv,variant=win_2010 & model=logreg_l1 & metric=dBSS,estimate,abs(0.060),-0.0598530898257437,True,True
+249,06_ablation_master.csv,variant=win_2010 & model=catboost_tweedie & metric=dMAE,estimate,0.481,0.4810104571786624,True,True
+249,06_ablation_master.csv,variant=win_2010 & model=hurdle_catboost_log_msess & metric=dMAE,estimate,0.514,0.5138430104060134,True,True
+249,06_ablation_master.csv,variant=win_2000 & model=logreg_l1 & metric=dBSS,estimate,-0.027,-0.0265078537869837,True,True
+249,06_ablation_master.csv,variant=win_2000 & model=catboost_tweedie & metric=dMAE,estimate,0.220,0.2204014169029111,True,True
+251,06_ablation_master.csv,variant=set_A & model=lightgbm & metric=dBSS,estimate,-0.002,-0.0022740567815793,True,True
+251,06_ablation_master.csv,variant=set_A & model=lightgbm & metric=dBSS,ci_low,-0.009,-0.0086616310856654,True,True
+251,06_ablation_master.csv,variant=set_A & model=lightgbm & metric=dBSS,ci_high,0.004,0.0044626521516062,True,True
+251,06_ablation_master.csv,variant=B+solar_1984 & model=lightgbm & metric=dBSS,estimate,-0.002,-0.0018753632675054,True,True
+251,06_ablation_master.csv,variant=drop_tendency & model=lightgbm & metric=dBSS,estimate,abs(0.005),-0.0048158604259633,True,True
+251,06_ablation_master.csv,variant=drop_season & model=logreg_l1 & metric=dBSS,estimate,-0.014,-0.0139676162518646,True,True
+251,06_ablation_master.csv,variant=drop_season & model=logreg_l1 & metric=dBSS,ci_low,-0.020,-0.0200583154666813,True,True
+251,06_ablation_master.csv,variant=drop_season & model=logreg_l1 & metric=dBSS,ci_high,-0.007,-0.0073731403915175,True,True
+251,06_ablation_master.csv,variant=thr 0.1 folds all & model=lightgbm & metric=dBSS,estimate,0.019,0.0190516647858861,True,True
+251,06_ablation_master.csv,variant=thr 0.1 folds all & model=lightgbm & metric=dBSS,ci_low,0.004,0.0036409984371178,True,True
+251,06_ablation_master.csv,variant=thr 0.1 folds all & model=lightgbm & metric=dBSS,ci_high,0.035,0.0347334206984793,True,True
+251,06_ablation_master.csv,variant=thr 1.0 folds all & model=lightgbm & metric=dBSS,estimate,0.011,0.0112073217030732,True,True
+251,06_ablation_master.csv,variant=thr 1.0 folds all & model=lightgbm & metric=dBSS,ci_low,-0.003,-0.0033059643690785,True,True
+251,06_ablation_master.csv,variant=thr 1.0 folds all & model=lightgbm & metric=dBSS,ci_high,0.027,0.0269352123411709,True,True
+251,06_ablation_master.csv,variant=thr 2.5 folds all & model=lightgbm & metric=dBSS,estimate,0.006,0.0060778956557028,True,True
+253,06_ablation_summary.csv,task=cls & model=lightgbm & variant=imerg_1998,BSS,0.159,0.1585,True,True
+253,06_ablation_summary.csv,task=cls & model=lightgbm & variant=win_1998,BSS,0.259,0.2589,True,True
+253,06_ablation_master.csv,variant=IMERG folds all & model=lightgbm & metric=dBSS,estimate,0.011,0.011028744762314,True,True
+253,06_ablation_master.csv,variant=IMERG folds all & model=lightgbm & metric=dBSS,ci_low,-0.002,-0.0022574600868517,True,True
+253,06_ablation_master.csv,variant=IMERG folds all & model=lightgbm & metric=dBSS,ci_high,0.025,0.0245466372384275,True,True
+253,06_ablation_master.csv,variant=tsmixer mm L30 & model=tsmixer & metric=dMAE,estimate,0.370,0.3700596815841948,True,True
+253,06_ablation_master.csv,variant=tft mm L30 & model=tft & metric=dMAE,estimate,0.167,0.1671531931306802,True,True
+253,09_derived_numbers.csv,*,ablation_contrasts,118,118.0,True,True
+253,09_derived_numbers.csv,*,ablation_noise,68,68.0,True,True
+253,09_derived_numbers.csv,*,ablation_model-specific,20,20.0,True,True
+253,09_derived_numbers.csv,*,ablation_solid,30,30.0,True,True
+257,09_derived_numbers.csv,*,transition_month_bss_min,0.41,0.4064951538200754,True,True
+257,09_derived_numbers.csv,*,transition_month_bss_max,0.49,0.4862107546491985,True,True
+257,09_derived_numbers.csv,*,monsoon_month_bss_min,0.09,0.0872362652336835,True,True
+257,09_derived_numbers.csv,*,monsoon_month_bss_max,0.34,0.3389087104927801,True,True
+257,07_test_by_season_cls.csv,season=monsoon & model=lightgbm,BSS,0.219,0.2192613793983481,True,True
+257,07_test_by_season_cls.csv,season=monsoon & model=baseline:seasonal+persistence,BSS,0.106,0.1061941335645239,True,True
+257,08_calibration_by_season.csv,season=monsoon & model=lightgbm,ECE,0.009,0.0086402917884845,True,True
+257,08_calibration_by_season.csv,season=monsoon & model=baseline:seasonal+persistence,mean_forecast,0.906,0.9061002691667084,True,True
+257,08_calibration_by_season.csv,season=monsoon & model=baseline:seasonal+persistence,observed_frequency,0.958,0.9576502732240436,True,True
+259,08_errors_by_intensity.csv,task=reg & bin=≥ 50 mm & model=catboost_tweedie,n_days,167,167,True,True
+259,08_errors_by_intensity.csv,task=reg & bin=≥ 50 mm & model=catboost_tweedie,obs_mean,83.3,83.30874251497005,True,True
+259,08_errors_by_intensity.csv,task=reg & bin=≥ 50 mm & model=catboost_tweedie,fc_mean,37.0,37.03368041006205,True,True
+259,08_errors_by_intensity.csv,task=reg & bin=≥ 50 mm & model=hurdle_catboost_log_msess,fc_mean,51.6,51.57553279289966,True,True
+259,09_derived_numbers.csv,*,heavy_ratio_min,32%,0.32330849507338,True,True
+259,09_derived_numbers.csv,*,heavy_ratio_max,62%,0.6190890804003177,True,True
+259,09_derived_numbers.csv,*,tweedie_heavy_fc_nextday,45.1,45.1,True,True
+259,09_derived_numbers.csv,*,tweedie_corr_previous_day,0.873,0.873,True,True
+259,09_derived_numbers.csv,*,tweedie_corr_target_day,0.712,0.712,True,True
+259,09_derived_numbers.csv,*,onset_caught_min,41%,0.41,True,True
+259,09_derived_numbers.csv,*,onset_caught_max,59%,0.59,True,True
+259,09_derived_numbers.csv,*,cessation_caught_min,14%,0.14,True,True
+259,09_derived_numbers.csv,*,cessation_caught_max,24%,0.24,True,True
+259,08_transitions.csv,subset=dry today (onset?) & model=baseline:seasonal+persistence,transitions_caught,35%,0.35,True,True
+259,08_fn_fp_states.csv,outcome=FN,rain_today_mm,0.05,0.05,True,True
+259,08_fn_fp_states.csv,outcome=FN,RH2M,73.6,73.57,True,True
+259,08_fn_fp_states.csv,outcome=FN,rain_tomorrow_mm,2.78,2.78,True,True
+261,08_importance_consolidated.csv,index=rain memory,LightGBM SHAP share (%),42.4,42.4,True,True
+261,08_importance_consolidated.csv,index=rain memory,LightGBM perm. ΔBrier share (%),55.4,55.4,True,True
+261,08_importance_consolidated.csv,index=rain memory,Tweedie perm. ΔMAE share (%),66.4,66.4,True,True
+261,08_importance_consolidated.csv,index=temperature,LightGBM SHAP share (%),20.1,20.1,True,True
+261,08_importance_consolidated.csv,index=moisture,LightGBM SHAP share (%),17.3,17.3,True,True
+261,08_importance_consolidated.csv,index=season,TFT VSN weight (%),40.9,40.9,True,True
+261,08_importance_consolidated.csv,index=moisture,TFT VSN weight (%),38.2,38.2,True,True
+265,09_derived_numbers.csv,*,famA_cls_learner_p_holm_max,0.0001,0.0001125699980081,True,True
+267,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,p_holm,0.160,0.1597896643549149,True,True
+267,07_statistical_comparison.csv,family=A & task=reg & loss=abs_error & model=catboost_tweedie,significant,False,False,True,True
+277,08_limitations_summary.csv,,,,,True,True
+282,09_derived_numbers.csv,*,n_dev_rows,"14,214",14214.0,True,True
+282,09_derived_numbers.csv,*,tft_cls_tuned_parameters,"412,927",412927.0,True,True
+290,09_derived_numbers.csv,*,famA_cls_learner_p_holm_max,0.0001,0.0001125699980081,True,True
+298,figures/01_annual_totals_and_ratio.png,,,,,True,True
+300,figures/03_split_timeline.png,,,,,True,True
+302,figures/07_test_forest.png,,,,,True,True
+304,figures/07_test_roc_pr_reliability.png,,,,,True,True
+306,figures/07_test_pred_vs_obs.png,,,,,True,True
+308,figures/06_deep_cost_vs_skill.png,,,,,True,True
+310,figures/06_ablation_forest_classical.png,,,,,True,True
+312,figures/08_errors_by_month.png,,,,,True,True
+314,figures/08_errors_by_intensity.png,,,,,True,True
+316,figures/08_permutation_importance_groups.png,,,,,True,True

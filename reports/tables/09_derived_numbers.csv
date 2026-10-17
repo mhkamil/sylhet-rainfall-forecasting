@@ -1,0 +1,55 @@
+quantity,value,source,method
+test_days,2192.0,07_test_by_season_cls.csv,sum of season day counts
+test_wet_share,0.5565693430656934,08_errors_by_year.csv,day-weighted mean of yearly wet shares
+test_mean_mm,14.127901459854014,08_errors_by_year.csv,sum of yearly totals / test days
+test_max_mm,202.35,08_errors_by_year.csv,max of yearly maxima
+prectotcorr_mean_1981_1997,1924.8823529411766,00_annual_precip_totals.csv,mean annual total
+prectotcorr_mean_1998_2015,2970.277777777778,00_annual_precip_totals.csv,mean annual total
+prectotcorr_mean_2016_2025,5377.2,00_annual_precip_totals.csv,mean annual total
+imerg_mean_1998_2015,3680.1666666666665,00_annual_precip_totals.csv,mean annual total
+imerg_mean_2016_2025,3757.1,00_annual_precip_totals.csv,mean annual total
+n_rows,16406.0,data/processed/features_B.parquet,rows after warm-up
+n_features_A,71.0,data/processed/features_A.parquet,non-target columns
+n_features_B,115.0,data/processed/features_B.parquet,non-target columns
+n_dev_rows,14214.0,data/processed/features_B.parquet,feature date <= 2019-12-30
+famA_cls_learner_dBSS_min,0.0698847718874129,07_statistical_comparison.csv,min over learners
+famA_cls_learner_dBSS_max,0.1077761601147587,07_statistical_comparison.csv,max over learners
+famA_cls_learner_p_holm_max,0.0001125699980081,07_statistical_comparison.csv,max over learners
+famA_cls_learners_significant,12.0,07_statistical_comparison.csv,count
+famB_cls_learner_p_holm_min,0.0645817803421526,07_statistical_comparison.csv,min over learners
+famA_mae_better_significant,0.0,07_statistical_comparison.csv,count
+famA_mae_worse_significant,7.0,07_statistical_comparison.csv,count
+transition_month_bss_min,0.4064951538200754,08_errors_by_month.csv,"min BSS, learners, months [3, 4, 10, 11]"
+transition_month_bss_max,0.4862107546491985,08_errors_by_month.csv,"max BSS, learners, months [3, 4, 10, 11]"
+monsoon_month_bss_min,0.0872362652336835,08_errors_by_month.csv,"min BSS, learners, months [6, 7, 8, 9]"
+monsoon_month_bss_max,0.3389087104927801,08_errors_by_month.csv,"max BSS, learners, months [6, 7, 8, 9]"
+spearman_dev_test_BSS,0.8941707632049479,07_dev_vs_test_ranking.csv,Spearman over models
+spearman_dev_test_MAE,0.9454324278554037,07_dev_vs_test_ranking.csv,Spearman over models
+spearman_dev_test_MSESS,0.924586317254182,07_dev_vs_test_ranking.csv,Spearman over models
+test_minus_dev_BSS_learner_min,0.093,07_dev_vs_test_ranking.csv,min over classical learners
+test_minus_dev_BSS_learner_max,0.117,07_dev_vs_test_ranking.csv,max over classical learners
+test_minus_dev_MAE_min,1.637,07_dev_vs_test_ranking.csv,min over models except majority
+test_minus_dev_MAE_max,2.627,07_dev_vs_test_ranking.csv,max over models except majority
+onset_caught_min,0.41,08_transitions.csv,min over learners
+onset_caught_max,0.59,08_transitions.csv,max over learners
+cessation_caught_min,0.14,08_transitions.csv,min over learners
+cessation_caught_max,0.24,08_transitions.csv,max over learners
+heavy_ratio_min,0.32330849507338,08_errors_by_intensity.csv,"min forecast/observed, >= 50 mm, learners"
+heavy_ratio_max,0.6190890804003177,08_errors_by_intensity.csv,"max forecast/observed, >= 50 mm, learners"
+ablation_contrasts,118.0,06_ablation_master.csv,rows
+ablation_noise,68.0,06_ablation_master.csv,count
+ablation_model-specific,20.0,06_ablation_master.csv,count
+ablation_solid,30.0,06_ablation_master.csv,count
+seed0_optimism_xgboost,0.0032533019639927607,06_tuning_budget.csv + 06_default_vs_tuned.csv,best trial value - mean BSS of seeds 1-4
+seed0_optimism_lightgbm,0.0030853754990081694,06_tuning_budget.csv + 06_default_vs_tuned.csv,best trial value - mean BSS of seeds 1-4
+seed0_optimism_catboost,0.004068133204118307,06_tuning_budget.csv + 06_default_vs_tuned.csv,best trial value - mean BSS of seeds 1-4
+ridge_alpha_retuned,235.8594058414266,models/optuna/best_params_ridge__reg.json,re-tuned range 1e-4..1e5
+tweedie_heavy_fc_sameday,37.0,08_limitations_evidence.csv,parsed tuple
+tweedie_heavy_fc_nextday,45.1,08_limitations_evidence.csv,parsed tuple
+tweedie_corr_target_day,0.712,08_limitations_evidence.csv,parsed tuple
+tweedie_corr_previous_day,0.873,08_limitations_evidence.csv,parsed tuple
+hurdle_heavy_fc_sameday,51.6,08_limitations_evidence.csv,parsed tuple
+hurdle_heavy_fc_nextday,63.6,08_limitations_evidence.csv,parsed tuple
+hurdle_corr_target_day,0.699,08_limitations_evidence.csv,parsed tuple
+hurdle_corr_previous_day,0.869,08_limitations_evidence.csv,parsed tuple
+tft_cls_tuned_parameters,412927.0,08_limitations_evidence.csv,parsed tuple

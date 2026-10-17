@@ -1,0 +1,33 @@
+issue,location,check,problem,fix,status
+1,v0 line 14,number not in the sentence,famB_cls_learner_p_holm_min,text completed / definition added / Holm p-value added,fixed
+2,v0 line 123,number not in the sentence,famA_cls_learners_significant,text completed / definition added / Holm p-value added,fixed
+3,v0 line 179,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+4,v0 line 181,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+5,v0 line 181,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+6,v0 line 245,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+7,v0 line 245,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+8,v0 line 245,number not in the sentence,std,text completed / definition added / Holm p-value added,fixed
+9,v0 line 265,significance claim without Holm/hedge,The central result is that machine learning added ,text completed / definition added / Holm p-value added,fixed
+10,v0 line 267,significance claim without Holm/hedge,"For amounts, no model beat seasonal + persistence ",text completed / definition added / Holm p-value added,fixed
+11,v0 line 290,significance claim without Holm/hedge,"Using a leakage-tested, chronological and pre-regi",text completed / definition added / Holm p-value added,fixed
+12,v0 line -,abbreviation not defined at first use,NASA,text completed / definition added / Holm p-value added,fixed
+13,v0 line -,abbreviation not defined at first use,IMERG,text completed / definition added / Holm p-value added,fixed
+14,v0 line -,abbreviation not defined at first use,GPM,text completed / definition added / Holm p-value added,fixed
+15,v0 line -,abbreviation not defined at first use,CERES,text completed / definition added / Holm p-value added,fixed
+16,v0 line -,abbreviation not defined at first use,SHAP,text completed / definition added / Holm p-value added,fixed
+17,v0 line -,abbreviation not defined at first use,ROC,text completed / definition added / Holm p-value added,fixed
+18,"Title, Sec. 1, Sec. 7",manual review,'pre-registered' overstates an internal freeze (no public registry),reworded: frozen protocol / internal pre-registration,fixed
+19,Abstract,manual review,'none differed significantly from LightGBM' is false for TiDE,'none of these twelve' + smallest p_Holm,fixed
+20,"Sec. 4.5, Sec. 5",manual review,"non-significance read as equivalence ('indistinguishable', 'matched')",'not significantly different',fixed
+21,"Sec. 3.4, 3.5",manual review,"internal stage jargon ('Stage-1', 'Stage-5 default')",plain descriptions,fixed
+22,"Sec. 3.8, 4.5",manual review,TFT test coverage computed after the one-shot run (post-hoc test analysis),disclosed as descriptive; no model or test changed,fixed
+23,Sec. 6 (7),manual review,no comparison with operational NWP / BMD forecasts (missing baseline),stated as limitation,fixed
+24,"Sec. 4.6, 6 (9)",manual review,DECISIONS 6.13 / Stage-8 limitation text say 84 ablation contrasts (49/10/25); 06_ablation_master.csv has 118 (68/20/30) since Stage 6,paper uses the CSV; correction logged (DECISIONS 9.3),fixed
+25,Sec. 4.3,manual review,dev->test Spearman for BSS: 0.88 in the Stage-7 notebook (unrounded scores) vs 0.89 from the rounded CSV (ties),paper reports 0.89 from the CSV; logged,fixed
+26,Sec. 4.1,manual review,"DATA_SOURCE.md rounds the 2016-2025 mean to 5,380 mm; CSV gives 5,377 mm","paper uses 5,377",fixed
+27,Sec. 4.2,manual review,"06_best_params.csv still shows the first Ridge optimum (alpha 99.4, upper edge); the re-tuned alpha 236 is only in the JSON",derived table reads the JSON,fixed
+28,Sec. 8,manual review,unit-test count 107 became 114 with the checker tests,count stated with breakdown; verified by pytest below,fixed
+29,requirements.txt,manual review,"nbformat, nbconvert, ipykernel, nbclient were unpinned",pinned to the installed versions,fixed
+30,"Sec. 3.7, 3.5, 3.8, 4.1",manual review,"methods without a verified reference (Holm, HAC, block bootstrap, Pettitt, Optuna, SHAP, ALE, Tweedie, PyTorch)",marked [NEEDS CITATION],open: researcher
+31,references.bib,manual review,Ahmed et al. (2021): title and author list not in the supplied list,marked [CHECK],open: researcher
+32,"Front matter, Sec. 2.2, 8",manual review,"authors, repository URL, data citation, IMERG header label",marked [CHECK],open: researcher
