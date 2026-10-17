@@ -1,0 +1,638 @@
+{
+  "run_at": "2026-10-17 03:31:09.781459",
+  "commit": "55d416fbd62e438cb4a8388df0b907ab0bdc9b10",
+  "config_sha256": "205d4851bd7268819787a45fe7f72fb38d54248c8f50c923b75239684021624f",
+  "seconds": 3386.2248051166534,
+  "files": {
+    "baseline:majority__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:persistence__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:climatology__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:seasonal__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:seasonal+persistence__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:majority__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:persistence__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:climatology__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:seasonal__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "baseline:seasonal+persistence__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_none__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_l2__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_l1__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_l1__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_l1__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_l1__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_l1__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_enet__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_enet__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_enet__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_enet__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "logreg_enet__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_logloss__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_logloss__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_logloss__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_logloss__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_logloss__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "linreg__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "ridge__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lasso__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "elasticnet__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_reg__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_reg__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_reg__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_reg__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "sgd_reg__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "random_forest__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "xgboost__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "lightgbm__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp_huber__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp_huber__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp_huber__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp_huber__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "mlp_huber__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost_tweedie__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost_tweedie__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost_tweedie__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost_tweedie__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "catboost_tweedie__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "hurdle_catboost_log_msess__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "hurdle_catboost_log_msess__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "hurdle_catboost_log_msess__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "hurdle_catboost_log_msess__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "hurdle_catboost_log_msess__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__cls__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__cls__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__cls__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__cls__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__cls__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tsmixer__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tide__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__reg__seed0": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__reg__seed1": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__reg__seed2": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__reg__seed3": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    },
+    "tft__reg__seed4": {
+      "rows": 2192,
+      "first_feature_date": "2019-12-31",
+      "last_feature_date": "2025-12-30"
+    }
+  }
+}

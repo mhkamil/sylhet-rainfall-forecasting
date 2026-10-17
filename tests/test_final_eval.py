@@ -155,7 +155,15 @@ def test_holm_matches_hand_computation():
     assert np.allclose(FE.holm(p), [0.03, 0.06, 0.06, 0.02])
 
 
-def test_final_eval_is_the_only_source_file_that_unlocks_the_test_getter():
+def test_only_the_final_run_and_its_analysis_unlock_the_test_getter():
+    """Stage 7.2 addition: src/final_report.py reads the test labels, but only after the confirmed run's manifest exists."""
     import reporting as Rep
     unlock = Rep.test_set_audit()["files calling test_index(..., confirm_final=True)"]
-    assert set(unlock) == {"tests/test_splits.py", "src/final_eval.py"}
+    assert set(unlock) <= {"tests/test_splits.py", "src/final_eval.py", "src/final_report.py"}
+
+
+def test_report_refuses_test_labels_without_the_manifest(tmp_path, monkeypatch):
+    import final_report as FR
+    monkeypatch.setattr(FR, "TEST_DIR", tmp_path)
+    with pytest.raises(PermissionError):
+        FR.truth()

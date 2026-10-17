@@ -1,0 +1,20 @@
+,vs PRECTOTCORR,vs PRECTOTCORR,vs IMERG,vs IMERG,vs IMERG
+,BSS,ROC_AUC,BSS,BSS_vs_seas_pers,ROC_AUC
+baseline:majority,-1.529,0.5,-1.045,-1.106,0.5
+baseline:persistence,0.13,0.908,-0.18,-0.215,0.832
+baseline:climatology,0.0,0.937,0.0,-0.03,0.905
+baseline:seasonal,-0.011,0.937,0.001,-0.029,0.903
+baseline:seasonal+persistence,0.269,0.96,0.029,0.0,0.911
+logreg_none,0.36,0.969,-0.012,-0.042,0.917
+logreg_l2,0.358,0.97,0.006,-0.023,0.919
+logreg_l1,0.351,0.97,0.01,-0.02,0.918
+logreg_enet,0.358,0.97,0.006,-0.024,0.919
+sgd_logloss,0.36,0.97,0.003,-0.027,0.918
+random_forest,0.338,0.968,0.019,-0.01,0.918
+xgboost,0.369,0.971,0.001,-0.028,0.922
+lightgbm,0.368,0.971,-0.003,-0.033,0.922
+catboost,0.376,0.972,0.004,-0.025,0.921
+mlp,0.357,0.969,-0.005,-0.035,0.919
+deep:tsmixer,0.342,0.971,0.028,-0.002,0.917
+deep:tide,0.227,0.947,-0.074,-0.106,0.896
+deep:tft,0.372,0.972,0.029,0.0,0.922

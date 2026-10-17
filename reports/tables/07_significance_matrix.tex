@@ -1,0 +1,52 @@
+\begin{table}
+\caption{Holm-corrected Diebold--Mariano results on 2020--2025 (+ significantly better, $-$ significantly worse, $\cdot$ n.s.).}
+\label{tab:test_matrix}
+\begin{tabular}{llllllll}
+\toprule
+ & family & \multicolumn{3}{r}{A} & \multicolumn{3}{r}{B} \\
+ & loss & Brier & abs\_error & sq\_error & Brier & abs\_error & sq\_error \\
+task & model &  &  &  &  &  &  \\
+\midrule
+\multirow[t]{18}{*}{cls} & baseline:climatology & − & ref & ref & − & ref & ref \\
+ & baseline:majority & − & ref & ref & − & ref & ref \\
+ & baseline:persistence & − & ref & ref & − & ref & ref \\
+ & baseline:seasonal & − & ref & ref & − & ref & ref \\
+ & baseline:seasonal+persistence & ref & ref & ref & − & ref & ref \\
+ & catboost & + & ref & ref & · & ref & ref \\
+ & deep:tft & + & ref & ref & · & ref & ref \\
+ & deep:tide & − & ref & ref & − & ref & ref \\
+ & deep:tsmixer & + & ref & ref & · & ref & ref \\
+ & lightgbm & + & ref & ref & ref & ref & ref \\
+ & logreg\_enet & + & ref & ref & · & ref & ref \\
+ & logreg\_l1 & + & ref & ref & · & ref & ref \\
+ & logreg\_l2 & + & ref & ref & · & ref & ref \\
+ & logreg\_none & + & ref & ref & · & ref & ref \\
+ & mlp & + & ref & ref & · & ref & ref \\
+ & random\_forest & + & ref & ref & · & ref & ref \\
+ & sgd\_logloss & + & ref & ref & · & ref & ref \\
+ & xgboost & + & ref & ref & · & ref & ref \\
+\cline{1-8}
+\multirow[t]{20}{*}{reg} & baseline:climatology & ref & − & − & ref & − & − \\
+ & baseline:majority & ref & − & − & ref & − & − \\
+ & baseline:persistence & ref & − & − & ref & − & − \\
+ & baseline:seasonal & ref & − & − & ref & − & − \\
+ & baseline:seasonal+persistence & ref & ref & ref & ref & · & · \\
+ & catboost & ref & · & · & ref & − & · \\
+ & catboost\_tweedie & ref & · & · & ref & ref & · \\
+ & deep:tft & ref & · & · & ref & · & · \\
+ & deep:tide & ref & − & · & ref & − & · \\
+ & deep:tsmixer & ref & − & + & ref & − & · \\
+ & elasticnet & ref & − & − & ref & − & · \\
+ & hurdle\_catboost\_log\_msess & ref & − & · & ref & − & ref \\
+ & lasso & ref & · & − & ref & − & · \\
+ & lightgbm & ref & · & · & ref & − & · \\
+ & linreg & ref & − & · & ref & − & · \\
+ & mlp\_huber & ref & · & · & ref & · & · \\
+ & random\_forest & ref & · & · & ref & − & · \\
+ & ridge & ref & − & · & ref & − & · \\
+ & sgd\_reg & ref & − & · & ref & − & · \\
+ & xgboost & ref & · & · & ref & − & · \\
+\cline{1-8}
+\bottomrule
+\end{tabular}
+\end{table}
