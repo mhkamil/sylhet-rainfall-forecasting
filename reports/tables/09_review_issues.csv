@@ -1,33 +1,67 @@
 issue,location,check,problem,fix,status
-1,v0 line 14,number not in the sentence,famB_cls_learner_p_holm_min,text completed / definition added / Holm p-value added,fixed
-2,v0 line 123,number not in the sentence,famA_cls_learners_significant,text completed / definition added / Holm p-value added,fixed
-3,v0 line 179,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
-4,v0 line 181,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+1,v0 line 183,number does not match CSV,MAE seed SD,"artefact: v0 cites 09_paper_table2.csv, renumbered to table 3 after v0; the final draft cites table 3 (value 1.919 verified)",fixed
+2,v0 line 14,number not in the sentence,famB_cls_learner_p_holm_min,text completed / definition added / Holm p-value added,fixed
+3,v0 line 123,number not in the sentence,famA_cls_learners_significant,text completed / definition added / Holm p-value added,fixed
+4,v0 line 179,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
 5,v0 line 181,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
-6,v0 line 245,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+6,v0 line 181,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
 7,v0 line 245,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
-8,v0 line 245,number not in the sentence,std,text completed / definition added / Holm p-value added,fixed
-9,v0 line 265,significance claim without Holm/hedge,The central result is that machine learning added ,text completed / definition added / Holm p-value added,fixed
-10,v0 line 267,significance claim without Holm/hedge,"For amounts, no model beat seasonal + persistence ",text completed / definition added / Holm p-value added,fixed
-11,v0 line 290,significance claim without Holm/hedge,"Using a leakage-tested, chronological and pre-regi",text completed / definition added / Holm p-value added,fixed
-12,v0 line -,abbreviation not defined at first use,NASA,text completed / definition added / Holm p-value added,fixed
-13,v0 line -,abbreviation not defined at first use,IMERG,text completed / definition added / Holm p-value added,fixed
-14,v0 line -,abbreviation not defined at first use,GPM,text completed / definition added / Holm p-value added,fixed
-15,v0 line -,abbreviation not defined at first use,CERES,text completed / definition added / Holm p-value added,fixed
-16,v0 line -,abbreviation not defined at first use,SHAP,text completed / definition added / Holm p-value added,fixed
-17,v0 line -,abbreviation not defined at first use,ROC,text completed / definition added / Holm p-value added,fixed
-18,"Title, Sec. 1, Sec. 7",manual review,'pre-registered' overstates an internal freeze (no public registry),reworded: frozen protocol / internal pre-registration,fixed
-19,Abstract,manual review,'none differed significantly from LightGBM' is false for TiDE,'none of these twelve' + smallest p_Holm,fixed
-20,"Sec. 4.5, Sec. 5",manual review,"non-significance read as equivalence ('indistinguishable', 'matched')",'not significantly different',fixed
-21,"Sec. 3.4, 3.5",manual review,"internal stage jargon ('Stage-1', 'Stage-5 default')",plain descriptions,fixed
-22,"Sec. 3.8, 4.5",manual review,TFT test coverage computed after the one-shot run (post-hoc test analysis),disclosed as descriptive; no model or test changed,fixed
-23,Sec. 6 (7),manual review,no comparison with operational NWP / BMD forecasts (missing baseline),stated as limitation,fixed
-24,"Sec. 4.6, 6 (9)",manual review,DECISIONS 6.13 / Stage-8 limitation text say 84 ablation contrasts (49/10/25); 06_ablation_master.csv has 118 (68/20/30) since Stage 6,paper uses the CSV; correction logged (DECISIONS 9.3),fixed
-25,Sec. 4.3,manual review,dev->test Spearman for BSS: 0.88 in the Stage-7 notebook (unrounded scores) vs 0.89 from the rounded CSV (ties),paper reports 0.89 from the CSV; logged,fixed
-26,Sec. 4.1,manual review,"DATA_SOURCE.md rounds the 2016-2025 mean to 5,380 mm; CSV gives 5,377 mm","paper uses 5,377",fixed
-27,Sec. 4.2,manual review,"06_best_params.csv still shows the first Ridge optimum (alpha 99.4, upper edge); the re-tuned alpha 236 is only in the JSON",derived table reads the JSON,fixed
-28,Sec. 8,manual review,unit-test count 107 became 114 with the checker tests,count stated with breakdown; verified by pytest below,fixed
-29,requirements.txt,manual review,"nbformat, nbconvert, ipykernel, nbclient were unpinned",pinned to the installed versions,fixed
-30,"Sec. 3.7, 3.5, 3.8, 4.1",manual review,"methods without a verified reference (Holm, HAC, block bootstrap, Pettitt, Optuna, SHAP, ALE, Tweedie, PyTorch)",marked [NEEDS CITATION],open: researcher
-31,references.bib,manual review,Ahmed et al. (2021): title and author list not in the supplied list,marked [CHECK],open: researcher
-32,"Front matter, Sec. 2.2, 8",manual review,"authors, repository URL, data citation, IMERG header label",marked [CHECK],open: researcher
+8,v0 line 245,number not in the sentence,p_holm,text completed / definition added / Holm p-value added,fixed
+9,v0 line 245,number not in the sentence,std,text completed / definition added / Holm p-value added,fixed
+10,v0 line 265,significance claim without Holm/hedge,The central result is that machine learning added ,text completed / definition added / Holm p-value added,fixed
+11,v0 line 267,significance claim without Holm/hedge,"For amounts, no model beat seasonal + persistence ",text completed / definition added / Holm p-value added,fixed
+12,v0 line 290,significance claim without Holm/hedge,"Using a leakage-tested, chronological and pre-regi",text completed / definition added / Holm p-value added,fixed
+13,v0 line -,abbreviation not defined at first use,NASA,text completed / definition added / Holm p-value added,fixed
+14,v0 line -,abbreviation not defined at first use,IMERG,text completed / definition added / Holm p-value added,fixed
+15,v0 line -,abbreviation not defined at first use,GPM,text completed / definition added / Holm p-value added,fixed
+16,v0 line -,abbreviation not defined at first use,CERES,text completed / definition added / Holm p-value added,fixed
+17,v0 line -,abbreviation not defined at first use,SHAP,text completed / definition added / Holm p-value added,fixed
+18,v0 line -,abbreviation not defined at first use,ROC,text completed / definition added / Holm p-value added,fixed
+19,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+20,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+21,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+22,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+23,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+24,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+25,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+26,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+27,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+28,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+29,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+30,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+31,v0 line -,bib entry never cited,,artefact: reference added to references.bib after v0; cited in the final draft,fixed
+32,v0 line 3,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+33,v0 line 18,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+34,v0 line 18,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+35,v0 line 22,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+36,v0 line 34,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+37,v0 line 51,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+38,v0 line 75,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+39,v0 line 77,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+40,v0 line 83,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+41,v0 line 97,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+42,v0 line 101,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+43,v0 line 101,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+44,v0 line 269,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+45,v0 line 271,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+46,v0 line 273,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+47,v0 line 294,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+48,v0 line 294,open [CHECK] / [NEEDS CITATION] marker,,"resolved with the researcher-verified references and metadata, or claim rephrased",fixed
+49,"Title, Sec. 1, Sec. 7",manual review,'pre-registered' overstates an internal freeze (no public registry),reworded: frozen protocol / internal pre-registration,fixed
+50,Abstract,manual review,'none differed significantly from LightGBM' is false for TiDE,'none of these twelve' + smallest p_Holm,fixed
+51,"Sec. 4.5, Sec. 5",manual review,"non-significance read as equivalence ('indistinguishable', 'matched')",'not significantly different',fixed
+52,"Sec. 3.4, 3.5",manual review,"internal stage jargon ('Stage-1', 'Stage-5 default')",plain descriptions,fixed
+53,"Sec. 3.8, 4.5",manual review,TFT test coverage computed after the one-shot run (post-hoc test analysis),disclosed as descriptive; no model or test changed,fixed
+54,Sec. 6 (7),manual review,no comparison with operational NWP / BMD forecasts (missing baseline),stated as limitation,fixed
+55,"Sec. 4.6, 6 (9)",manual review,DECISIONS 6.13 / Stage-8 limitation text say 84 ablation contrasts (49/10/25); 06_ablation_master.csv has 118 (68/20/30) since Stage 6,paper uses the CSV; correction logged (DECISIONS 9.3),fixed
+56,Sec. 4.3,manual review,dev->test Spearman for BSS: 0.88 in the Stage-7 notebook (unrounded scores) vs 0.89 from the rounded CSV (ties),paper reports 0.89 from the CSV; logged,fixed
+57,Sec. 4.1,manual review,"DATA_SOURCE.md rounds the 2016-2025 mean to 5,380 mm; CSV gives 5,377 mm","paper uses 5,377",fixed
+58,Sec. 4.2,manual review,"06_best_params.csv still shows the first Ridge optimum (alpha 99.4, upper edge); the re-tuned alpha 236 is only in the JSON",derived table reads the JSON,fixed
+59,Sec. 8,manual review,unit-test count 107 became 114 with the checker tests,count stated with breakdown; verified by pytest below,fixed
+60,requirements.txt,manual review,"nbformat, nbconvert, ipykernel, nbclient were unpinned",pinned to the installed versions,fixed
+61,"Sec. 1, 3.4-3.8, 4.1, 5",manual review,15 claims without a verified reference,"11 cited from the researcher-verified list (Holm, Newey-West, Kuensch, Pettitt, Akiba, Lundberg, Apley, Jorgensen, Paszke, Brammer, Rafiuddin); 4 rephrased as claims that need no external citation (own results, verification practice via Wilks) instead of forcing an ill-fitting reference",fixed
+62,references.bib,manual review,Ahmed et al. (2021): title and author list missing,researcher-supplied metadata; 30 entries in total,fixed
+63,"Front matter, Sec. 2.2, 2.3, 8",manual review,"author, IMERG header label, PRECTOTCORR break attribution, repository URL, data citation","facts from the raw header and DATA_SOURCE.md; break attribution stated as plausible, untested [Reichle 2017]",fixed
+64,Sec. 8 vs request,manual review,"data access date: request says 16 Oct 2026, DATA_SOURCE.md records the download on 14 Oct 2026",kept the recorded 14 Oct 2026 (rule 12); researcher to confirm,open: researcher
+65,Sec. 4.3-4.4,manual review,"LaTeX numbers tables in order of appearance; the paper used 1, 3, 2, 4",tables renumbered 1-4 in order; captions generated with the tables,fixed
+66,paper_draft.tex,manual review,Unicode symbols blocked pdfLaTeX,mapped to LaTeX commands; file is pure ASCII; compiled with pdfLaTeX + BibTeX below,fixed

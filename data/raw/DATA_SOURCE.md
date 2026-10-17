@@ -36,3 +36,8 @@
 
 ## Processed copy
 `data/processed/power_parsed.parquet`: same rows and columns as the raw table, a daily `DatetimeIndex` named `date` (from YEAR+DOY), and `-999 → NaN`. Nothing else is changed.
+
+## How to cite these data (Stage 9)
+NASA Langley Research Center (LaRC) Prediction Of Worldwide Energy Resources (POWER) Project, Agroclimatology (AG) daily point data, 24.9157° N, 91.832° E, 1981-01-01 to 2025-12-31, downloaded 2026-10-14 from https://power.larc.nasa.gov/ (the researcher's notes give an access date of 2026-10-16; this file records the download of the raw file on 2026-10-14, which the manuscript uses). Cite together with Sparks (2018), Gelaro et al. (2017), Reichle et al. (2017) and Huffman et al. (2020); see `reports/references.bib`.
+
+The file header literally labels `IMERG_PRECTOT` as "MERRA-2 Total Precipitation (mm/day)" (header line 10), and `PRECTOTCORR` as "MERRA-2 Precipitation Corrected (mm/day)" (line 20).

@@ -183,7 +183,7 @@ def significance_claims(md):
     out = []
     sec = section_of(md)
     for start, text in blocks(md):
-        if text.lstrip().startswith(("#", "|")) or not SIGNIF.search(COMMENT.sub(" ", text)):
+        if text.lstrip().startswith(("#", "|", "![", "Table:")) or not SIGNIF.search(COMMENT.sub(" ", text)):  # captions
             continue
         has_holm = "p_holm" in text
         hedged = bool(re.search(r"uncorrected|without multiplicity|no multiplicity|bootstrap CI", text, re.I))
@@ -244,9 +244,8 @@ def markers(md):
     sec = section_of(md)
     rows = []
     for i, line in enumerate(md.split("\n"), 1):
-        for tag in ("[CHECK]", "[NEEDS CITATION]"):
-            for _ in range(line.count(tag)):
-                rows.append({"line": i, "section": sec[i], "marker": tag})
+        for m in re.finditer(r"\[(CHECK|NEEDS CITATION)[^\]]*\]", line):   # also "[CHECK: repository URL]"
+            rows.append({"line": i, "section": sec[i], "marker": f"[{m.group(1)}]"})
     return pd.DataFrame(rows, columns=["line", "section", "marker"])
 
 
@@ -287,8 +286,43 @@ end
 """
 
 
-def to_latex(md_path=DRAFT, tex_path=None, workdir=None):
-    """pandoc Markdown -> standalone LaTeX: natbib citations, `% source:` comments kept, other HTML comments dropped."""
+# Unicode -> LaTeX so that the file compiles with pdfLaTeX as well as XeLaTeX/LuaLaTeX (applied to the whole file,
+# including `% source:` comments, so the .tex is pure ASCII)
+LATEX_CHARS = {"\u0394": "$\\Delta$", "\u03c1": "$\\rho$", "\u03ba": "$\\kappa$", "\u03b1": "$\\alpha$",
+               "\u2265": "$\\ge$", "\u2264": "$\\le$", "\u00b1": "$\\pm$", "\u2248": "$\\approx$",
+               "\u00d7": "$\\times$", "\u2212": "$-$", "\u2192": "$\\rightarrow$", "\u226b": "$\\gg$",
+               "\u00b0": "$^{\\circ}$", "\u00b2": "$^{2}$", "\u2013": "--", "\u2014": "---", "\u2019": "'",
+               "\u2018": "`", "\u201c": "``", "\u201d": "''", "\u00fc": '\\"{u}', "\u00e9": "\\'{e}",
+               "\u00f6": '\\"{o}', "\u2026": "\\ldots{}", "\u00a0": "~", "\u2009": "\\,", "\u202f": "\\,"}
+PACKAGES = "\\usepackage{amsmath,amssymb,booktabs,graphicx,hyperref,natbib}"
+
+
+def latex_ascii(tex):
+    for u, l in LATEX_CHARS.items():
+        tex = tex.replace(u, l)
+    left = sorted({c for c in tex if ord(c) > 127})
+    if left:
+        raise ValueError(f"non-ASCII characters without a LaTeX mapping: {left}")
+    return tex
+
+
+def tex_escape(text):
+    """Escape LaTeX specials in plain text (captions written by pandas are not escaped)."""
+    for a, b in [("\\", "\\textbackslash{}"), ("%", "\\%"), ("_", "\\_"), ("&", "\\&"), ("#", "\\#"), ("$", "\\$")]:
+        text = text.replace(a, b)
+    return text
+
+
+TABLE_INPUT = ("\\begin{landscape}\n\\footnotesize\\setlength{\\tabcolsep}{2pt}\n\\input{%s}\n"
+               "\\normalsize\n\\end{landscape}")
+
+
+def to_latex(md_path=DRAFT, tex_path=None, workdir=None, table_inputs=()):
+    """pandoc Markdown -> standalone LaTeX: natbib citations, `% source:` comments kept, other HTML comments dropped,
+    Unicode replaced by LaTeX commands (pdfLaTeX-ready), the requested packages declared before \\begin{document}.
+    `table_inputs`: paths (relative to the .tex) of LaTeX tables that replace the captioned pandoc tables, in order;
+    they are set in landscape because the results tables are too wide for a portrait page. Uncaptioned tables do not
+    advance the table counter."""
     md_path = Path(md_path)
     tex_path = Path(tex_path or md_path.with_suffix(".tex"))
     lua = Path(workdir or md_path.parent) / ".source_comments.lua"
@@ -299,5 +333,31 @@ def to_latex(md_path=DRAFT, tex_path=None, workdir=None):
     finally:
         lua.unlink()
     tex = tex_path.read_text().replace("\\bibliography{references.bib}", "\\bibliography{references}")  # BibTeX adds .bib
-    tex_path.write_text(tex)
+    tex = tex.replace("\\begin{document}", PACKAGES + "  % already loaded by the template; no-op, kept explicit\n"
+                      "\\usepackage{pdflscape}\n\\begin{document}", 1)
+    inputs = iter(table_inputs)
+
+    def swap(m):
+        if "\\caption" not in m.group():
+            return m.group() + "\n\\addtocounter{table}{-1}% uncaptioned table: no number"
+        path = next(inputs, None)
+        return m.group() if path is None else TABLE_INPUT % path
+    tex = re.sub(r"\\begin\{longtable\}.*?\\end\{longtable\}", swap, tex, flags=re.S)
+    tex_path.write_text(latex_ascii(tex))
     return tex_path
+
+
+def overleaf_bundle(tex_path, bib_path, tables, out_zip):
+    """Zip main.tex (+ every figure it includes), references.bib and the LaTeX tables; returns the member names."""
+    import zipfile
+    tex_path = Path(tex_path)
+    tex = tex_path.read_text()
+    figures = re.findall(r"\\includegraphics(?:\[[^\]]*\])?\{(figures/[^}]*)\}", tex)   # not the template's macro
+    with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("main.tex", tex)
+        z.write(bib_path, "references.bib")
+        for f in figures:
+            z.write(tex_path.parent / f, f)
+        for t in tables:
+            z.write(t, f"tables/{Path(t).name}")
+        return z.namelist()

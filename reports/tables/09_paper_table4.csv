@@ -1,4 +1,4 @@
-Model,ΔMAE vs s+p,p_Holm (ΔMAE s+p),ΔMSESS vs s+p,p_Holm (ΔMSESS s+p),ΔMAE vs Tweedie,p_Holm (ΔMAE Tweedie)
+Model,ΔMAE vs s+p,"p_Holm (MAE, A)",ΔMSESS vs s+p,"p_Holm (MSESS, A)",ΔMAE vs Tweedie,"p_Holm (MAE, B)"
 Majority / mean,"+5.504 [+4.638, +6.412]",<0.001*,"-0.597 [-0.677, -0.513]",<0.001*,"+5.767 [+4.960, +6.632]",<0.001*
 Persistence,"+0.799 [+0.392, +1.204]",<0.001*,"-0.121 [-0.226, -0.037]",0.003*,"+1.062 [+0.569, +1.528]",<0.001*
 Climatology,"+1.899 [+1.248, +2.583]",<0.001*,"-0.370 [-0.420, -0.307]",<0.001*,"+2.162 [+1.530, +2.792]",<0.001*

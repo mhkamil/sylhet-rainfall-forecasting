@@ -1,7 +1,20 @@
-\begin{tabular}{lllllll}
+\begin{longtable}{lllllll}
+\caption{Paired test-set comparisons for regression: $\Delta$MAE (mm; negative = better) and $\Delta$MSESS (positive = better) with 95 \% block-bootstrap CIs and Holm-adjusted Diebold-Mariano p-values (p\_Holm, by metric and family; * significant at 0.05). Family A: versus seasonal + persistence (s+p); family B: versus CatBoost Tweedie.} \label{tab:4} \\
 \toprule
-Model & ΔMAE vs s+p & p\_Holm (ΔMAE s+p) & ΔMSESS vs s+p & p\_Holm (ΔMSESS s+p) & ΔMAE vs Tweedie & p\_Holm (ΔMAE Tweedie) \\
+Model & $\Delta$MAE vs s+p & p\_Holm (MAE, A) & $\Delta$MSESS vs s+p & p\_Holm (MSESS, A) & $\Delta$MAE vs Tweedie & p\_Holm (MAE, B) \\
 \midrule
+\endfirsthead
+\caption[]{Paired test-set comparisons for regression: $\Delta$MAE (mm; negative = better) and $\Delta$MSESS (positive = better) with 95 \% block-bootstrap CIs and Holm-adjusted Diebold-Mariano p-values (p\_Holm, by metric and family; * significant at 0.05). Family A: versus seasonal + persistence (s+p); family B: versus CatBoost Tweedie.} \\
+\toprule
+Model & $\Delta$MAE vs s+p & p\_Holm (MAE, A) & $\Delta$MSESS vs s+p & p\_Holm (MSESS, A) & $\Delta$MAE vs Tweedie & p\_Holm (MAE, B) \\
+\midrule
+\endhead
+\midrule
+\multicolumn{7}{r}{Continued on next page} \\
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
 Majority / mean & +5.504 [+4.638, +6.412] & <0.001* & -0.597 [-0.677, -0.513] & <0.001* & +5.767 [+4.960, +6.632] & <0.001* \\
 Persistence & +0.799 [+0.392, +1.204] & <0.001* & -0.121 [-0.226, -0.037] & 0.003* & +1.062 [+0.569, +1.528] & <0.001* \\
 Climatology & +1.899 [+1.248, +2.583] & <0.001* & -0.370 [-0.420, -0.307] & <0.001* & +2.162 [+1.530, +2.792] & <0.001* \\
@@ -22,5 +35,4 @@ Hurdle CatBoost (log + smearing) & +0.737 [+0.232, +1.206] & 0.001* & +0.027 [-0
 TSMixer & +0.502 [+0.239, +0.745] & 0.002* & +0.047 [+0.019, +0.076] & 0.023* & +0.765 [+0.543, +0.984] & <0.001* \\
 TiDE & +0.891 [+0.577, +1.207] & <0.001* & -0.000 [-0.034, +0.026] & 1.000 & +1.154 [+0.816, +1.461] & <0.001* \\
 TFT & -0.193 [-0.400, +0.011] & 0.333 & +0.003 [-0.032, +0.045] & 1.000 & +0.070 [-0.050, +0.194] & 0.326 \\
-\bottomrule
-\end{tabular}
+\end{longtable}

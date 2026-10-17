@@ -49,6 +49,11 @@ def test_untraced_numbers_and_unhedged_significance():
     assert len(sig) == 1 and not sig.ok.iloc[0]
 
 
+def test_review_markers_include_annotated_variants():
+    md = "A [CHECK]. B [CHECK: repository URL]. C [NEEDS CITATION]."
+    assert P.markers(md).marker.tolist() == ["[CHECK]", "[CHECK]", "[NEEDS CITATION]"]
+
+
 def test_abbreviation_must_be_defined_at_first_use():
     md = "We use the BSS here. Later the Brier skill score (BSS) and the critical success index (CSI) and CSI."
     assert P.abbreviations(md).abbreviation.tolist() == ["BSS"]
@@ -64,5 +69,25 @@ def test_latex_keeps_source_comments(tmp_path):
 
 def test_draft_cites_only_the_verified_bibliography():
     keys = set(P.bib_keys())
-    assert len(keys) == 17                                         # 16 verified references; DM and HLN separately
+    assert len(keys) == 30                                         # researcher-verified list (DM and HLN separately)
     assert set(P.citation_keys(P.DRAFT.read_text())) == keys
+    assert "[CHECK]" not in P.BIB.read_text() and P.markers(P.DRAFT.read_text()).empty
+
+
+def test_latex_ascii_maps_unicode_and_rejects_unknown_characters():
+    assert P.latex_ascii("ΔBSS ≥ 50, −0.2, 24.9° N, ρ") == "$\\Delta$BSS $\\ge$ 50, $-$0.2, 24.9$^{\\circ}$ N, $\\rho$"
+    with pytest.raises(ValueError):
+        P.latex_ascii("Ω")
+
+
+def test_overleaf_bundle_contains_every_included_figure(tmp_path):
+    import zipfile
+    (tmp_path / "figures").mkdir()
+    (tmp_path / "figures" / "a.png").write_bytes(b"png")
+    tex = tmp_path / "x.tex"
+    tex.write_text("\\let\\Oldincludegraphics\\includegraphics\n\\includegraphics[width=1\\textwidth]{figures/a.png}\n")
+    (tmp_path / "t1.tex").write_text("table")
+    (tmp_path / "r.bib").write_text("@book{k,}")
+    members = P.overleaf_bundle(tex, tmp_path / "r.bib", [tmp_path / "t1.tex"], tmp_path / "b.zip")
+    assert sorted(members) == ["figures/a.png", "main.tex", "references.bib", "tables/t1.tex"]
+    assert zipfile.ZipFile(tmp_path / "b.zip").read("main.tex").decode() == tex.read_text()
