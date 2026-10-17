@@ -333,6 +333,10 @@ def to_latex(md_path=DRAFT, tex_path=None, workdir=None, table_inputs=()):
     finally:
         lua.unlink()
     tex = tex_path.read_text().replace("\\bibliography{references.bib}", "\\bibliography{references}")  # BibTeX adds .bib
+    # microtype costs seconds per pass and pushed the 3-pass build past Overleaf's free compile timeout
+    tex = re.sub(r"\\IfFileExists\{microtype\.sty\}\{.*?\n\}\{\}",
+                 lambda m: "% microtype removed (compile time on Overleaf's free plan):\n" +
+                 "\n".join("% " + l for l in m.group().splitlines()), tex, flags=re.S)
     tex = tex.replace("\\begin{document}", PACKAGES + "  % already loaded by the template; no-op, kept explicit\n"
                       "\\usepackage{pdflscape}\n\\begin{document}", 1)
     inputs = iter(table_inputs)
@@ -347,8 +351,30 @@ def to_latex(md_path=DRAFT, tex_path=None, workdir=None, table_inputs=()):
     return tex_path
 
 
-def overleaf_bundle(tex_path, bib_path, tables, out_zip):
-    """Zip main.tex (+ every figure it includes), references.bib and the LaTeX tables; returns the member names."""
+PRINT_WIDTH_PX = 1960   # 300 dpi at the printed width (\\textwidth = 21.59 cm - 2 x 2.5 cm margins = 16.59 cm)
+
+
+def optimize_figure(src, width_px=PRINT_WIDTH_PX):
+    """PNG bytes for LaTeX: alpha flattened onto white (pdfTeX can then copy the PNG data instead of decoding it),
+    downsampled to 300 dpi at the printed width (never upsampled), lossless optimised PNG (no JPEG artefacts on text)."""
+    import io
+    from PIL import Image
+    im = Image.open(src)
+    if im.mode in ("RGBA", "LA", "P"):
+        im = im.convert("RGBA")
+        flat = Image.new("RGB", im.size, "white")
+        flat.paste(im, mask=im.getchannel("A"))
+        im = flat
+    if im.width > width_px:
+        im = im.resize((width_px, round(im.height * width_px / im.width)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, format="PNG", optimize=True, dpi=(300, 300))
+    return buf.getvalue()
+
+
+def overleaf_bundle(tex_path, bib_path, tables, out_zip, bbl=None, figure_width_px=None):
+    """Zip main.tex (+ every figure it includes), references.bib, the LaTeX tables and optionally a pre-built main.bbl;
+    with `figure_width_px` the figures are passed through `optimize_figure`. Returns the member names."""
     import zipfile
     tex_path = Path(tex_path)
     tex = tex_path.read_text()
@@ -356,8 +382,13 @@ def overleaf_bundle(tex_path, bib_path, tables, out_zip):
     with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("main.tex", tex)
         z.write(bib_path, "references.bib")
+        if bbl is not None:
+            z.write(bbl, "main.bbl")
         for f in figures:
-            z.write(tex_path.parent / f, f)
+            if figure_width_px:
+                z.writestr(f, optimize_figure(tex_path.parent / f, figure_width_px))
+            else:
+                z.write(tex_path.parent / f, f)
         for t in tables:
             z.write(t, f"tables/{Path(t).name}")
         return z.namelist()

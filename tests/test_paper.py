@@ -91,3 +91,22 @@ def test_overleaf_bundle_contains_every_included_figure(tmp_path):
     members = P.overleaf_bundle(tex, tmp_path / "r.bib", [tmp_path / "t1.tex"], tmp_path / "b.zip")
     assert sorted(members) == ["figures/a.png", "main.tex", "references.bib", "tables/t1.tex"]
     assert zipfile.ZipFile(tmp_path / "b.zip").read("main.tex").decode() == tex.read_text()
+
+
+def test_bundle_figures_are_flattened_downsampled_and_bbl_included(tmp_path):
+    import io
+    import zipfile
+    from PIL import Image
+    (tmp_path / "figures").mkdir()
+    Image.new("RGBA", (4000, 1000), (255, 0, 0, 0)).save(tmp_path / "figures" / "a.png", dpi=(300, 300))
+    tex = tmp_path / "x.tex"
+    tex.write_text("\\includegraphics{figures/a.png}\n")
+    (tmp_path / "r.bib").write_text("@book{k,}")
+    (tmp_path / "main.bbl").write_text("\\begin{thebibliography}{1}\\end{thebibliography}")
+    members = P.overleaf_bundle(tex, tmp_path / "r.bib", [], tmp_path / "b.zip", bbl=tmp_path / "main.bbl",
+                                figure_width_px=1000)
+    assert "main.bbl" in members
+    im = Image.open(io.BytesIO(zipfile.ZipFile(tmp_path / "b.zip").read("figures/a.png")))
+    assert im.mode == "RGB" and im.size == (1000, 250)               # alpha removed, aspect kept, never upsampled
+    assert im.getpixel((0, 0)) == (255, 255, 255)                     # transparent pixels become white paper
+    assert round(im.info["dpi"][0]) == 300
