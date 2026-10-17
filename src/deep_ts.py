@@ -195,23 +195,41 @@ def n_params(model):
     return int(sum(t.numel() for t in model.model.parameters()))
 
 
+DEV_DATES = {"inner_last": INNER_LAST, "slice_first": SLICE_FIRST, "train_last": TRAIN_LAST, "val_first": VAL_FIRST,
+             "val_last": DEV_END}
+
+
 def run(kind, transform, L, seed, save=True, return_model=False, params=None, variant=None, tag=None, out_dir=None,
-        inner_only=False, extra_callbacks=()):
+        inner_only=False, extra_callbacks=(), dates=None, refit_only=None, log_val=True, reseed=False):
     """Inner fit (early stopping; smearing for log) -> refit -> validation forecasts.
     Returns (predictions, info) or, with return_model=True, (predictions, info, refitted model, data).
     params: architecture/optimiser overrides (Stage 6.3); variant: {"df", "fut", "past", "wet_mm"} for ablations;
-    inner_only: stop after the inner fit and return (slice forecasts, info) -- used for tuning on the slice."""
+    inner_only: stop after the inner fit and return (slice forecasts, info) -- used for tuning on the slice.
+    dates: {"inner_last", "slice_first", "train_last", "val_first", "val_last"} (default: the Stage-5 DL split).
+    refit_only: {"best_epoch", "smear_factor"} frozen beforehand -> skip the inner fit (Stage 7 final refit).
+    log_val=False: the refit never sees the forecast period's targets, not even for a logged loss curve.
+    reseed=True: reset torch's/numpy's GLOBAL random state to `seed` before every fit. darts seeds the weight
+    initialisation but the data-loader shuffling draws from the global torch RNG, so without this a fit depends on
+    what ran earlier in the same process (Stage 7 uses reseed=True; Stages 5-6 ran with the default False)."""
+    dt = {**DEV_DATES, **(dates or {})}
+    INNER_LAST, SLICE_FIRST, TRAIN_LAST = dt["inner_last"], dt["slice_first"], dt["train_last"]
+    VAL_FIRST, VAL_LAST = dt["val_first"], dt["val_last"]
     tag = tag or f"{kind}_{transform}_L{L}"
     name, t0 = f"{tag}_s{seed}", time.time()
     lik = lambda: likelihood_for(kind, transform)
     v = variant or {}
     data = lambda last: prepare(transform, last, v.get("df"), v.get("fut"), v.get("past"), v.get("wet_mm", WET_MM))
+    if refit_only is not None:
+        _reseed(seed, reseed)
+        return _refit(kind, transform, L, seed, params, data, name, tag, refit_only, TRAIN_LAST, VAL_FIRST, VAL_LAST,
+                      out_dir, save, t0, lik)
     # 1. inner fit with early stopping on the slice, best weights restored
     d = data(INNER_LAST)
     h1 = History()
     m1 = make_model(kind, L, seed, MAX_EPOCHS, [h1, EarlyStopping("val_loss", patience=PATIENCE, min_delta=1e-4),
                                                 *extra_callbacks],
                     name + "_inner", checkpoints=True, likelihood=lik(), params=params)
+    _reseed(seed, reseed)
     m1.fit(upto(d["target"], INNER_LAST), past_covariates=d["past"], future_covariates=d["future"],
            val_series=d["target"].slice(SLICE_FIRST - pd.Timedelta(days=L), TRAIN_LAST), val_past_covariates=d["past"],
            val_future_covariates=d["future"], load_best=True, verbose=False)
@@ -229,11 +247,12 @@ def run(kind, transform, L, seed, save=True, return_model=False, params=None, va
     d = data(TRAIN_LAST)
     h2 = History()
     m2 = make_model(kind, L, seed, best_epoch, [h2], name, likelihood=lik(), params=params)
-    m2.fit(upto(d["target"], TRAIN_LAST), past_covariates=d["past"], future_covariates=d["future"],
-           val_series=d["target"].slice(VAL_FIRST - pd.Timedelta(days=L), DEV_END), val_past_covariates=d["past"],
-           val_future_covariates=d["future"], verbose=False)
+    _reseed(seed, reseed)
+    val = dict(val_series=d["target"].slice(VAL_FIRST - pd.Timedelta(days=L), VAL_LAST), val_past_covariates=d["past"],
+               val_future_covariates=d["future"]) if log_val else {}
+    m2.fit(upto(d["target"], TRAIN_LAST), past_covariates=d["past"], future_covariates=d["future"], verbose=False, **val)
     # 3. one-step forecasts for every validation target date
-    out = postprocess(one_step(m2, d, VAL_FIRST, DEV_END), d["raw"], transform, smear)
+    out = postprocess(one_step(m2, d, VAL_FIRST, VAL_LAST), d["raw"], transform, smear)
     info = {"best_epoch": best_epoch, "smear_factor": smear, "fit_seconds": time.time() - t0, "n_params": n_params(m2),
             "inner_train": h1.train,
             "inner_val": h1.val, "refit_train": h2.train, "refit_val": h2.val}
@@ -246,6 +265,32 @@ def run(kind, transform, L, seed, save=True, return_model=False, params=None, va
         Path(f"{stem}_history.json").write_text(json.dumps(info))
     shutil.rmtree(CKPT_DIR / (name + "_inner"), ignore_errors=True)
     return (out, info, m2, d) if return_model else (out, info)
+
+
+def _reseed(seed, on):
+    if on:
+        import torch
+        torch.manual_seed(seed)
+        np.random.seed(seed)
+
+
+def _refit(kind, transform, L, seed, params, data, name, tag, frozen, train_last, first, last, out_dir, save, t0, lik):
+    """Refit on targets <= train_last for the frozen number of epochs and forecast first..last (no target of the
+    forecast period is used: no validation series, scalers fitted on rows <= train_last)."""
+    d = data(train_last)
+    h = History()
+    m = make_model(kind, L, seed, int(frozen["best_epoch"]), [h], name, likelihood=lik(), params=params)
+    _reseed(seed, frozen.get("reseed", True))
+    m.fit(upto(d["target"], train_last), past_covariates=d["past"], future_covariates=d["future"], verbose=False)
+    out = postprocess(one_step(m, d, first, last), d["raw"], transform, frozen.get("smear_factor", np.nan))
+    info = {"best_epoch": int(frozen["best_epoch"]), "smear_factor": frozen.get("smear_factor", np.nan),
+            "fit_seconds": time.time() - t0, "n_params": n_params(m), "refit_train": h.train}
+    if save:
+        folder = Path(out_dir or DEEP_DIR)
+        folder.mkdir(parents=True, exist_ok=True)
+        out.to_parquet(folder / f"{tag}__seed{seed}.parquet")
+        (folder / f"{tag}__seed{seed}_history.json").write_text(json.dumps(info, default=float))
+    return out, info
 
 
 # ---------------- scoring (same metrics and references as the classical models, DL split) ----------------

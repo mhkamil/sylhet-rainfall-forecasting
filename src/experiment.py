@@ -129,9 +129,10 @@ def append_results(new, path=RESULTS):
 
 
 # ---------- runners ----------
-def fit_fold(factory, task, seed, X, y, tr, va):
-    """One fold of the protocol: inner fit on the slice (threshold, early stopping), refit on `tr`, predict `va`.
-    Labels of `va` are never read. Returns (predictions, threshold, n_trees, info). Shared by run_cv and src/tuning.py."""
+def inner_fit(factory, task, seed, X, y, tr):
+    """Inner half of the protocol on the training rows `tr` only: fit on inner-train, predict the slice (last 3 target
+    years of `tr`) -> CSI threshold (classification) and early-stopping number of trees/epochs (boosters, MLP).
+    Returns (threshold, n_trees, info); NaN where not applicable. Also used by src/final_eval.py to freeze these values."""
     est = factory(seed, y[tr])
     boost, thr, n_trees, info = booster_family(est) is not None, np.nan, np.nan, {}
     if boost or task == "cls":
@@ -145,10 +146,23 @@ def fit_fold(factory, task, seed, X, y, tr, va):
             thr = M.choose_threshold(y[sl], predict(inner, X.loc[sl], task), "CSI")
         info = {"inner_train_last_target": S.target_dates(itr).max().date(),
                 "slice_targets": f"{S.target_dates(sl).min().date()}..{S.target_dates(sl).max().date()}"}
-    if boost:
-        set_trees(est, n_trees)
+    return thr, n_trees, info
+
+
+def refit_predict(factory, task, seed, X, y, tr, va, n_trees=np.nan):
+    """Fit on all of `tr` (boosters/MLP with n_trees) and predict `va`."""
+    est = factory(seed, y[tr])
+    if booster_family(est) is not None:
+        set_trees(est, int(n_trees))
     est.fit(X.loc[tr], y[tr])
-    return predict(est, X.loc[va], task), thr, n_trees, info
+    return predict(est, X.loc[va], task)
+
+
+def fit_fold(factory, task, seed, X, y, tr, va):
+    """One fold of the protocol: inner fit on the slice (threshold, early stopping), refit on `tr`, predict `va`.
+    Labels of `va` are never read. Returns (predictions, threshold, n_trees, info). Shared by run_cv and src/tuning.py."""
+    thr, n_trees, info = inner_fit(factory, task, seed, X, y, tr)
+    return refit_predict(factory, task, seed, X, y, tr, va, n_trees), thr, n_trees, info
 
 
 

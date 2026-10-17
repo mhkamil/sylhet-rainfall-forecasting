@@ -1,0 +1,376 @@
+{
+ "classical": {
+  "[\"cls\", \"logreg_none\", 0]": {
+   "threshold": 0.32
+  },
+  "[\"cls\", \"logreg_l2\", 0]": {
+   "threshold": 0.38
+  },
+  "[\"cls\", \"logreg_l1\", 0]": {
+   "threshold": 0.44
+  },
+  "[\"cls\", \"logreg_l1\", 1]": {
+   "threshold": 0.44
+  },
+  "[\"cls\", \"logreg_l1\", 2]": {
+   "threshold": 0.44
+  },
+  "[\"cls\", \"logreg_l1\", 3]": {
+   "threshold": 0.44
+  },
+  "[\"cls\", \"logreg_l1\", 4]": {
+   "threshold": 0.44
+  },
+  "[\"cls\", \"logreg_enet\", 0]": {
+   "threshold": 0.37
+  },
+  "[\"cls\", \"logreg_enet\", 1]": {
+   "threshold": 0.37
+  },
+  "[\"cls\", \"logreg_enet\", 2]": {
+   "threshold": 0.37
+  },
+  "[\"cls\", \"logreg_enet\", 3]": {
+   "threshold": 0.37
+  },
+  "[\"cls\", \"logreg_enet\", 4]": {
+   "threshold": 0.37
+  },
+  "[\"cls\", \"sgd_logloss\", 0]": {
+   "threshold": 0.34
+  },
+  "[\"cls\", \"sgd_logloss\", 1]": {
+   "threshold": 0.34
+  },
+  "[\"cls\", \"sgd_logloss\", 2]": {
+   "threshold": 0.33
+  },
+  "[\"cls\", \"sgd_logloss\", 3]": {
+   "threshold": 0.34
+  },
+  "[\"cls\", \"sgd_logloss\", 4]": {
+   "threshold": 0.34
+  },
+  "[\"cls\", \"random_forest\", 0]": {
+   "threshold": 0.31
+  },
+  "[\"cls\", \"random_forest\", 1]": {
+   "threshold": 0.26
+  },
+  "[\"cls\", \"random_forest\", 2]": {
+   "threshold": 0.35
+  },
+  "[\"cls\", \"random_forest\", 3]": {
+   "threshold": 0.25
+  },
+  "[\"cls\", \"random_forest\", 4]": {
+   "threshold": 0.32
+  },
+  "[\"cls\", \"xgboost\", 0]": {
+   "threshold": 0.42,
+   "n_trees": 791
+  },
+  "[\"cls\", \"xgboost\", 1]": {
+   "threshold": 0.32,
+   "n_trees": 698
+  },
+  "[\"cls\", \"xgboost\", 2]": {
+   "threshold": 0.3,
+   "n_trees": 617
+  },
+  "[\"cls\", \"xgboost\", 3]": {
+   "threshold": 0.29,
+   "n_trees": 929
+  },
+  "[\"cls\", \"xgboost\", 4]": {
+   "threshold": 0.29,
+   "n_trees": 778
+  },
+  "[\"cls\", \"lightgbm\", 0]": {
+   "threshold": 0.31,
+   "n_trees": 838
+  },
+  "[\"cls\", \"lightgbm\", 1]": {
+   "threshold": 0.35,
+   "n_trees": 723
+  },
+  "[\"cls\", \"lightgbm\", 2]": {
+   "threshold": 0.35,
+   "n_trees": 1149
+  },
+  "[\"cls\", \"lightgbm\", 3]": {
+   "threshold": 0.35,
+   "n_trees": 964
+  },
+  "[\"cls\", \"lightgbm\", 4]": {
+   "threshold": 0.34,
+   "n_trees": 829
+  },
+  "[\"cls\", \"catboost\", 0]": {
+   "threshold": 0.31,
+   "n_trees": 777
+  },
+  "[\"cls\", \"catboost\", 1]": {
+   "threshold": 0.33,
+   "n_trees": 752
+  },
+  "[\"cls\", \"catboost\", 2]": {
+   "threshold": 0.31,
+   "n_trees": 461
+  },
+  "[\"cls\", \"catboost\", 3]": {
+   "threshold": 0.3,
+   "n_trees": 504
+  },
+  "[\"cls\", \"catboost\", 4]": {
+   "threshold": 0.29,
+   "n_trees": 506
+  },
+  "[\"cls\", \"mlp\", 0]": {
+   "threshold": 0.35,
+   "n_trees": 31
+  },
+  "[\"cls\", \"mlp\", 1]": {
+   "threshold": 0.35,
+   "n_trees": 39
+  },
+  "[\"cls\", \"mlp\", 2]": {
+   "threshold": 0.44,
+   "n_trees": 41
+  },
+  "[\"cls\", \"mlp\", 3]": {
+   "threshold": 0.31,
+   "n_trees": 42
+  },
+  "[\"cls\", \"mlp\", 4]": {
+   "threshold": 0.25,
+   "n_trees": 50
+  },
+  "[\"reg\", \"linreg\", 0]": {},
+  "[\"reg\", \"ridge\", 0]": {},
+  "[\"reg\", \"lasso\", 0]": {},
+  "[\"reg\", \"elasticnet\", 0]": {},
+  "[\"reg\", \"sgd_reg\", 0]": {},
+  "[\"reg\", \"sgd_reg\", 1]": {},
+  "[\"reg\", \"sgd_reg\", 2]": {},
+  "[\"reg\", \"sgd_reg\", 3]": {},
+  "[\"reg\", \"sgd_reg\", 4]": {},
+  "[\"reg\", \"random_forest\", 0]": {},
+  "[\"reg\", \"random_forest\", 1]": {},
+  "[\"reg\", \"random_forest\", 2]": {},
+  "[\"reg\", \"random_forest\", 3]": {},
+  "[\"reg\", \"random_forest\", 4]": {},
+  "[\"reg\", \"xgboost\", 0]": {
+   "n_trees": 1031
+  },
+  "[\"reg\", \"xgboost\", 1]": {
+   "n_trees": 706
+  },
+  "[\"reg\", \"xgboost\", 2]": {
+   "n_trees": 733
+  },
+  "[\"reg\", \"xgboost\", 3]": {
+   "n_trees": 748
+  },
+  "[\"reg\", \"xgboost\", 4]": {
+   "n_trees": 653
+  },
+  "[\"reg\", \"lightgbm\", 0]": {
+   "n_trees": 713
+  },
+  "[\"reg\", \"lightgbm\", 1]": {
+   "n_trees": 752
+  },
+  "[\"reg\", \"lightgbm\", 2]": {
+   "n_trees": 617
+  },
+  "[\"reg\", \"lightgbm\", 3]": {
+   "n_trees": 694
+  },
+  "[\"reg\", \"lightgbm\", 4]": {
+   "n_trees": 708
+  },
+  "[\"reg\", \"catboost\", 0]": {
+   "n_trees": 722
+  },
+  "[\"reg\", \"catboost\", 1]": {
+   "n_trees": 812
+  },
+  "[\"reg\", \"catboost\", 2]": {
+   "n_trees": 746
+  },
+  "[\"reg\", \"catboost\", 3]": {
+   "n_trees": 761
+  },
+  "[\"reg\", \"catboost\", 4]": {
+   "n_trees": 752
+  },
+  "[\"reg\", \"mlp_huber\", 0]": {
+   "n_trees": 43
+  },
+  "[\"reg\", \"mlp_huber\", 1]": {
+   "n_trees": 96
+  },
+  "[\"reg\", \"mlp_huber\", 2]": {
+   "n_trees": 64
+  },
+  "[\"reg\", \"mlp_huber\", 3]": {
+   "n_trees": 66
+  },
+  "[\"reg\", \"mlp_huber\", 4]": {
+   "n_trees": 76
+  },
+  "[\"reg\", \"catboost_tweedie\", 0]": {
+   "n_trees": 266
+  },
+  "[\"reg\", \"catboost_tweedie\", 1]": {
+   "n_trees": 288
+  },
+  "[\"reg\", \"catboost_tweedie\", 2]": {
+   "n_trees": 263
+  },
+  "[\"reg\", \"catboost_tweedie\", 3]": {
+   "n_trees": 275
+  },
+  "[\"reg\", \"catboost_tweedie\", 4]": {
+   "n_trees": 276
+  },
+  "[\"reg\", \"hurdle_catboost_log_msess\", 0]": {
+   "n_trees": 319,
+   "smear_factor": 1.748874178136312
+  },
+  "[\"reg\", \"hurdle_catboost_log_msess\", 1]": {
+   "n_trees": 185,
+   "smear_factor": 1.7935655494177871
+  },
+  "[\"reg\", \"hurdle_catboost_log_msess\", 2]": {
+   "n_trees": 251,
+   "smear_factor": 1.7439205803638802
+  },
+  "[\"reg\", \"hurdle_catboost_log_msess\", 3]": {
+   "n_trees": 229,
+   "smear_factor": 1.747567768372166
+  },
+  "[\"reg\", \"hurdle_catboost_log_msess\", 4]": {
+   "n_trees": 247,
+   "smear_factor": 1.7595368910214262
+  }
+ },
+ "deep": {
+  "[\"tsmixer\", \"cls\", 0]": {
+   "best_epoch": 16,
+   "threshold": 0.35
+  },
+  "[\"tsmixer\", \"cls\", 1]": {
+   "best_epoch": 33,
+   "threshold": 0.36
+  },
+  "[\"tsmixer\", \"cls\", 2]": {
+   "best_epoch": 29,
+   "threshold": 0.47
+  },
+  "[\"tsmixer\", \"cls\", 3]": {
+   "best_epoch": 15,
+   "threshold": 0.42
+  },
+  "[\"tsmixer\", \"cls\", 4]": {
+   "best_epoch": 25,
+   "threshold": 0.39
+  },
+  "[\"tide\", \"cls\", 0]": {
+   "best_epoch": 17,
+   "threshold": 0.39
+  },
+  "[\"tide\", \"cls\", 1]": {
+   "best_epoch": 15,
+   "threshold": 0.29
+  },
+  "[\"tide\", \"cls\", 2]": {
+   "best_epoch": 7,
+   "threshold": 0.3
+  },
+  "[\"tide\", \"cls\", 3]": {
+   "best_epoch": 27,
+   "threshold": 0.29
+  },
+  "[\"tide\", \"cls\", 4]": {
+   "best_epoch": 19,
+   "threshold": 0.39
+  },
+  "[\"tft\", \"cls\", 0]": {
+   "best_epoch": 24,
+   "threshold": 0.41
+  },
+  "[\"tft\", \"cls\", 1]": {
+   "best_epoch": 8,
+   "threshold": 0.31
+  },
+  "[\"tft\", \"cls\", 2]": {
+   "best_epoch": 12,
+   "threshold": 0.3
+  },
+  "[\"tft\", \"cls\", 3]": {
+   "best_epoch": 11,
+   "threshold": 0.27
+  },
+  "[\"tft\", \"cls\", 4]": {
+   "best_epoch": 33,
+   "threshold": 0.45
+  },
+  "[\"tsmixer\", \"reg\", 0]": {
+   "best_epoch": 17,
+   "smear_factor": 1.8863318157633866
+  },
+  "[\"tsmixer\", \"reg\", 1]": {
+   "best_epoch": 1,
+   "smear_factor": 3.034661895698657
+  },
+  "[\"tsmixer\", \"reg\", 2]": {
+   "best_epoch": 35,
+   "smear_factor": 1.8623011821266322
+  },
+  "[\"tsmixer\", \"reg\", 3]": {
+   "best_epoch": 22,
+   "smear_factor": 1.7494667512534883
+  },
+  "[\"tsmixer\", \"reg\", 4]": {
+   "best_epoch": 23,
+   "smear_factor": 1.8159522304120357
+  },
+  "[\"tide\", \"reg\", 0]": {
+   "best_epoch": 33,
+   "smear_factor": 1.5876773186051387
+  },
+  "[\"tide\", \"reg\", 1]": {
+   "best_epoch": 60,
+   "smear_factor": 1.5869151718987387
+  },
+  "[\"tide\", \"reg\", 2]": {
+   "best_epoch": 52,
+   "smear_factor": 1.5892657557240208
+  },
+  "[\"tide\", \"reg\", 3]": {
+   "best_epoch": 33,
+   "smear_factor": 1.58672611721842
+  },
+  "[\"tide\", \"reg\", 4]": {
+   "best_epoch": 60,
+   "smear_factor": 1.6060521977779414
+  },
+  "[\"tft\", \"reg\", 0]": {
+   "best_epoch": 30
+  },
+  "[\"tft\", \"reg\", 1]": {
+   "best_epoch": 29
+  },
+  "[\"tft\", \"reg\", 2]": {
+   "best_epoch": 38
+  },
+  "[\"tft\", \"reg\", 3]": {
+   "best_epoch": 36
+  },
+  "[\"tft\", \"reg\", 4]": {
+   "best_epoch": 59
+  }
+ }
+}
