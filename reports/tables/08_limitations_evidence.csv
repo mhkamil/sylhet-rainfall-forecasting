@@ -1,0 +1,14 @@
+,value
+test BSS LightGBM (PRECTOTCORR / IMERG),"(0.368, -0.003)"
+"dev BSS LightGBM, 1998+ training (PRECTOTCORR / IMERG-trained)","(0.259, 0.158)"
+mean annual PRECTOTCORR 1981-97 / 1998-2015 / 2016-2025 (mm),"(1925.0, 2970.0, 5377.0)"
+monsoon wet share dev 0.1 mm / 1 mm,"(0.962, 0.882)"
+winter wet share dev 0.1 mm / 1 mm,"(0.14, 0.073)"
+monsoon / winter wet share test (1 mm),"(0.958, 0.077)"
+catboost_tweedie: mean forecast on >=50 mm days (same day / next day) vs observed mean,"(37.0, 45.1, 83.3)"
+"catboost_tweedie: corr(forecast, obs) lag 0 / forecast vs previous-day obs","(0.712, 0.873)"
+hurdle_catboost_log_msess: mean forecast on >=50 mm days (same day / next day) vs observed mean,"(51.6, 63.6, 83.3)"
+"hurdle_catboost_log_msess: corr(forecast, obs) lag 0 / forecast vs previous-day obs","(0.699, 0.869)"
+test days >= 50 mm,167
+development days / max deep parameters (tuned TFT-cls),"(14214.0, 412927.0)"
+features / training days per feature (Set B),"(115.0, 124.0)"

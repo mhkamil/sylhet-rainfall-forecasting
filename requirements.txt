@@ -18,3 +18,4 @@ darts==0.48.0
 pytorch-lightning==2.6.6
 optuna==5.0.0
 PyYAML==6.0.1
+shap==0.54.1
